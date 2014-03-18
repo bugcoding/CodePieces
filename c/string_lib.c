@@ -97,7 +97,7 @@ boolean string_substr_length(const char *str, char *sub_str, int offset, int len
     {	
         //compute start point when cut string from tail
         int start = (len > str_len) ? 0 : offset + len;
-        //length up overflow, reset to max string length 
+        //length up overflow, reset to max string length
         len = (len > str_len) ? str_len : len;
         for (int i = start; i < len + offset; i++)
         {
@@ -108,9 +108,35 @@ boolean string_substr_length(const char *str, char *sub_str, int offset, int len
     return true;
 }
 
+boolean string_trim(char *str)
+{
+    if (str == NULL)
+    {
+        return false;
+    }
+    string_deltailspace(str);
+    string_reverse(str);
+    string_deltailspace(str);
+    string_reverse(str);
+    return true;
+}
+
+void string_deltailspace(char *str)
+{
+    int len = string_len(str);
+    for (int i = len - 1; i >= 0; i--)
+    {
+        if (str[i] != ' ')
+        {
+            str[i + 1] = '\0';
+            break;
+        }
+    }
+}
+
 int main(int argc, const char *argv[])
 {
-    char str[] = "1234567890";
+    char str[] = "    1234567890    ";
     printf("%u\n", string_len(str));
 
 
@@ -120,8 +146,11 @@ int main(int argc, const char *argv[])
     printf("%d\n", string_firstindexof(str, '3'));
     char t[32] = "\0";
     //string_substr_2index(str, t, 5, 4);
-    string_substr_length(str, t, -2, 14);
-    printf("t == %s\n", t);
+    //string_substr_length(str, t, -2, 14);
+    //printf("t == %s\n", t);
+    string_trim(str);
+    printf("str == %s", str);
+    printf("---------------\n");
 
     return 0;
 }

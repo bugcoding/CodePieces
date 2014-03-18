@@ -12,9 +12,9 @@ boolean string_reverse(char *need_rev);
 int string_firstindexof(const char *str, char ch);
 //get substring 
 boolean string_substr_2index(const char *str, char *sub_str, 
-									int offset, int end);
+                                int offset, int end);
 
 //return substring with index and length
 boolean string_substr_length(const char *str, char *sub_str,
-									int offset, int len);
+                                int offset, int len);
 #endif

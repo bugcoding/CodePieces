@@ -107,7 +107,7 @@ boolean string_substr_length(const char *str, char *sub_str, int offset, int len
     }
     return true;
 }
-
+//delete space
 boolean string_trim(char *str)
 {
     if (str == NULL)

@@ -2,6 +2,7 @@
 #ifndef _STRING_LIB_H_
 #define _STRING_LIB_H_
 
+//like bool
 typedef enum{false, true} boolean;
 
 //get string length
@@ -18,6 +19,10 @@ boolean string_substr_2index(const char *str, char *sub_str,
 boolean string_substr_length(const char *str, char *sub_str,
                                 int offset, int len);
 
+//delete all space character of string tail
 void string_deltailspace(char *str);
+//delete spaces from string head and tail
 boolean string_trim(char *str);
+
+
 #endif

@@ -41,6 +41,10 @@ char *string_reverse(char *need_rev)
 //get char pos of string
 int string_firstindexof(const char *str, char ch)
 {
+    if (str == NULL)
+    {
+        return -1;
+    }
     const char *temp = str;
     int cnt = 0;
     while (*temp)
@@ -51,6 +55,27 @@ int string_firstindexof(const char *str, char ch)
             return cnt;
         }
         temp++;
+    }
+    return -1;
+}
+//get char last pos of string
+int string_lastindexof(const char *str, char ch)
+{
+    if (str == NULL)
+    {
+        return -1;
+    }
+    int len = string_len(str);
+    const char *temp = &*(str + len - 1);
+    int cnt = len - 1;
+    while (*temp)
+    {
+        cnt--;
+        if (*temp == ch)
+        {
+            return cnt;
+        }
+        temp--;
     }
     return -1;
 }
@@ -136,15 +161,15 @@ void string_deltailspace(char *str)
 
 int main(int argc, const char *argv[])
 {
-    char str[] = "    1234567890    ";
+    char str[] = "    1234567890";
     printf("%u\n", string_len(str));
 
 
-    boolean b = string_reverse(str);
-    printf("%d\n", b);
+    //boolean b = string_reverse(str);
+    //printf("%d\n", b);
     printf("%s\n", str);
-    printf("%d\n", string_firstindexof(str, '3'));
-    char t[32] = "\0";
+    printf("%d\n", string_lastindexof(str, '3'));
+    //char t[32] = "\0";
     //string_substr_2index(str, t, 5, 4);
     //string_substr_length(str, t, -2, 14);
     //printf("t == %s\n", t);

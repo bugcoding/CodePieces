@@ -7,7 +7,7 @@ typedef enum{false, true} boolean;
 //get string length
 unsigned int string_len(const char *str);
 //reverse string
-boolean string_reverse(char *need_rev);
+char *string_reverse(char *need_rev);
 //get character pos in string
 int string_firstindexof(const char *str, char ch);
 //get substring

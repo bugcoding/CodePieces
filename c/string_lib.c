@@ -13,11 +13,11 @@ unsigned int string_len(const char *str)
 }
 
 //reverse the string param
-boolean string_reverse(char *need_rev)
+char *string_reverse(char *need_rev)
 {
     if (need_rev == NULL)
     {
-        return false;
+        return NULL;
     }
 
     int len = string_len(need_rev) - 1;
@@ -30,11 +30,11 @@ boolean string_reverse(char *need_rev)
     }
     if (i == -1)
     {
-        return true;
+        return need_rev;
     }
     else
     {
-        return false;
+        return NULL;
     }
 }
 

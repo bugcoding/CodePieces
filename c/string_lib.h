@@ -30,5 +30,7 @@ void string_deltailspace(char *str);
 //delete spaces from string head and tail
 boolean string_trim(char *str);
 
+//check string is words or not
+boolean string_iswords(const char *str);
 
 #endif

@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <ctype.h>
 #include "string_lib.h"
 
 
@@ -159,16 +160,37 @@ void string_deltailspace(char *str)
     }
 }
 
+//check string is words or not
+boolean string_iswords(const char *str)
+{
+    const char *temp = str;
+    if (isdigit(*temp))
+    {
+        return false;
+    }
+
+    while (*temp)
+    {
+        if ((*temp < 'a' && *temp > 'Z' && *temp != '_') || *temp > 'z' 
+                || (*temp < 'A' && !isdigit(*temp)))
+        {
+            return false;
+        }
+        temp++;
+    }
+    return true;
+}
+
 int main(int argc, const char *argv[])
 {
-    char str[] = "    1234567890";
+    char str[] = "  s___A";
     printf("%u\n", string_len(str));
 
 
     //boolean b = string_reverse(str);
     //printf("%d\n", b);
-    printf("%s\n", str);
-    printf("%d\n", string_lastindexof(str, '3'));
+    //printf("%s\n", str);
+    //printf("%d\n", string_lastindexof(str, '3'));
     //char t[32] = "\0";
     //string_substr_2index(str, t, 5, 4);
     //string_substr_length(str, t, -2, 14);
@@ -176,6 +198,10 @@ int main(int argc, const char *argv[])
     string_trim(str);
     printf("str == %s", str);
     printf("---------------\n");
+    
+    boolean b = string_iswords(str);
+    printf("is_words %d\n", b);
 
+    
     return 0;
 }

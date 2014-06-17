@@ -47,17 +47,17 @@ class ExcelToPlist(object):
             fp.writelines([self.__xml_head, self.__xml_doc, self.__plist_ver])
             for i in range(1, self.__rows):
                 datas = self.__sheet_contents.row_values(i)
-                fp.write("\n<key>" + str(int(datas[0])) + "</key>"+ "\n<dict>")
+                fp.write("\n" + "<key>" + str(int(datas[0])) + "</key>"+ "\n" + "<dict>")
 
                 for j in range(0, self.__cols):
-                    key = "\n\t<key>" + self.__title_data[j] + "</key>\n"
+                    key = "\n\t" + "<key>" + self.__title_data[j] + "</key>" + "\n"
                     #如果读取的带有小数点,这里处理抹掉
                     if (type(datas[j]) is types.FloatType):
                         datas[j] = int(datas[j])
 
-                    string = "\t<string>" + str(datas[j]) + "</string>"
+                    string = "\t" + "<string>" + str(datas[j]) + "</string>"
                     fp.writelines([key, string])
-                fp.write("\n</dict>")
+                fp.write("\n" + "</dict>")
 
             fp.write("\n</dict>\n</plist>")
             print "Write data to [%s] success.[%d] rows insert." % (self.__output_file_name, self.__rows - 1)

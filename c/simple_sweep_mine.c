@@ -87,7 +87,6 @@ void malloc_arrays()
 		*(button_array + i) = (GtkWidget **)malloc(sizeof(GtkWidget *) * button_col_num);
 		assert(*(button_array + i) != NULL);
 	}
-;
 	//ÓÎÏ·Çø¿Õ¼ä
 	game_area = (gint **)malloc(sizeof(gint *) * button_row_num);
 	assert(game_area != NULL);

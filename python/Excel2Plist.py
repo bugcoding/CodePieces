@@ -118,7 +118,7 @@ class Excel2Plist(object):
     def setSourceDir(self, _src_excel_dir, _dst_plist_dir):
         self.__excel_dirs = self.getpwd() + os.sep + _src_excel_dir + os.sep
         if not os.path.exists(self.__excel_dirs):
-            print ("[not found [excel] directory on current directory!]")
+            print ("\033[1;31;40m%s\033[0m" % "[not found [excel] directory on current directory!]")
             sys.exit(0)
         self.__plist_dirs = self.getpwd() + os.sep + _dst_plist_dir + os.sep
         if not os.path.exists(self.__plist_dirs):
@@ -145,7 +145,7 @@ class Excel2Plist(object):
                     plist_name = self.__plist_dirs + os.sep + file.split(".")[0] + ".plist"
                     cnt += 1
                     self.transExcel2Plist(excel_name, plist_name)
-                    print( "transform [" + file + "] >>> completed")
+                    print("\033[1;34;36m%s\033[0m \033[1;32;38m%s\033[0m" % ("transform " , "["+file+"]" + " >>> completed"))
         if cnt != 0:
             print ("Success [" + str(cnt) + "]" + " plist")
         else:

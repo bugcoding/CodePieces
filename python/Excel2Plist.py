@@ -86,26 +86,35 @@ class Excel2Plist(object):
                 _key_info = str(_key_info)
             _plist_fp.write("\t\t" + self.__key_pre_label + _key_info + self.__key_closed_label + "\n")
             #key所属下面是一个dict
-            _plist_fp.write(self.__dict_pre_label + "\n")
+            _plist_fp.write("\t\t" + self.__dict_pre_label + "\n")
             
             #加入每一列对应的数据
             for j in range(0, _excel_cols):
+                
+                _data_info = _excel_table.row(i)[j].value
+
+                #对应的数据信息，如果是中文，做encode处理
+                if type(_data_info) == types.FloatType:
+                    if _data_info == int(_data_info):
+                        _data_info = str(int(_data_info))
+                    else:
+                        _data_info = str("%.3f" % _data_info)
+                else:
+                    _data_info = _data_info.encode('utf-8')
+                #如果某一个列没有值，则这列不生成结点
+                if _data_info is None or  _data_info == "":
+                    continue
+
                 #写入key值
                 _plist_fp.write("\t\t\t" + self.__key_pre_label + (_excel_table.row(0)[j].value) + self.__key_closed_label + "\n")
                 #写入string
                 _plist_fp.write("\t\t\t" + self.__string_pre_label)
-                #对应的数据信息，如果是中文，做encode处理
-                _data_info = _excel_table.row(i)[j].value
                 
-                if type(_data_info) == types.FloatType:
-                    _data_info = str(int(_data_info))
-                else:
-                    _data_info = _data_info.encode('utf-8')
-                
+                #写入这列具体的数据 
                 _plist_fp.write(_data_info)
                 _plist_fp.write(self.__string_closed_label + "\n")
             
-            _plist_fp.write(self.__dict_closed_label + "\n")
+            _plist_fp.write("\t\t" + self.__dict_closed_label + "\n")
         
         
         #写完数据写入字符封闭标签

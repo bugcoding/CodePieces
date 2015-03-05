@@ -693,17 +693,7 @@ set errorformat=%f(%l):\ %t%*[^0-9]%n:\ %m
 
 set makeprg=d:\pclint\LINT-NT.exe\ -u\ d:\PCLint\std.lnt\ d:\PCLint\env-vc6.lnt\ \"%\"
 
-"Pclint ¿ì½Ý¼ü
-"map <S-x> :make <CR> :cw <CR>
-
-func! PCLint()
-exec "w"
-exec "!lint-nt -u d:/PCLint/std.lnt d:/PCLint/env-vc6.lnt %" 
-endfunc
-map <S-x> :call PCLint() <CR><ESC>
 "-------------------PCLint_END_--------------------------------------------------------
-
-
 
 ""´úÂëÔÄ¶Á
 ""--------------------------------------rainbow config_BEGIN---------------------------------
@@ -717,10 +707,5 @@ map <silent> <leader>sv : so $vim/_vimrc<CR>
 map <silent> <leader>se : e $vim/_vimrc<CR>
 ""--------------------------------------loading vimrc_END-----------------------------------
 
-""======================================for python programming=========================
-
-
-let g:python_highlight_builtins = 1
-let g:python_highlight_builtin_funcs = 1
 
 

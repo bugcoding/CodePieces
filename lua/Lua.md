@@ -3,6 +3,7 @@
 
 
 **Hell World**
+
 1. 直接在命令行运行(前提lua已加入环境变量中):
 > \>\> print("Hello, World!")
 2. print语句写在文件中，如hello.lua, print("Hello, World!")保存

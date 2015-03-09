@@ -170,6 +170,7 @@ set softtabstop=4
 
 set expandtab
 
+"python文件的缩进设置
 autocmd FileType python setlocal tabstop=4 shiftwidth=4 softtabstop=4 textwidth=79
 
 "命令行增强模式

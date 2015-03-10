@@ -210,13 +210,71 @@ end
 字符串的时候提到过了，二个句点，用于连接二个字符串，如果操作数是数值类型，则会把数值转换为字符串
 但是数值使用连接符号的时候空格是必须的，以防解释错连接符作用
 
-<!--chap1 above -->
-
-
-
-
-
-
+5. __构造表__
+由构造器(constructor)来构造表，最简单的表的构造
+```lua
+tbl = {} -- 这就构造了一个空的表
+```
+也可以直接像c语言的数组初始化一样定义的同时初始化表
+```lua
+halfy_month_tbl = {"1", "2", "3", "4", "5", "6"}
+```
+这就相当于把"1"放在了halfy_month_tbl[1]中，依次类推(***lua中索引从1开始，而不是从0开始***)
+还可以使用类似于键值的方式来初始化表
+```lua
+rect_tbl = {wid = 10, hgt = 20, name = "Rectangle"}
+```
+此时访问对应的表中的数据，需要使用标签索引，rect_tbl["wid"] -> 10, rect_tbl["name"] -> "Rectangle"
+也可以使用rect_tbl.hgt来访问hgt域
+而且我们可以随时向表中添加或者删除任何类型的域，构造器只是在初始化的时候起作用
+```lua
+--初始化一个表
+ext_tbl = {x = 10, y = 15, desc = "extension"}
+tmp_tbl = {is_add = false, z = 10.01}
+--向ext_tbl中添加一个域，内容是一个表
+ext_tbl["ext"] = tmp_tbl
+ext_tbl[1] = "test_area"
+--删除ext_tbl的一个域
+ext_tbl["x"] = nil
+print(ext_tbl[1]) -- "test_area"
+print(ext_tbl.ext["z"]) -- 10.01
+print(ext_tbl.x) -- nil
+```
+因为每次使用构造器的时候都产生一个新的表，可以用这个特性生成一个链表
+```lua
+linked_list = nil
+--构造链表
+for i = 1, 20, 2 do
+	   linked_list = {n = linked_list, v = i}
+end
+--反序输出
+tmp = linked_list
+while tmp do
+	   print(tmp.v)
+	   tmp = tmp.n
+end
+```
+表也可以在初始化的时候同时使用没有域名字与有域名字的
+```lua
+tbl = {x = 10, y = 30, "first"}
+print(tbl.x) -- 10
+print(tbl[1]) -- "first"
+--还可以使用嵌套表的结构
+init_tbl = {name = "table", area = 10, {a = 1, b = 2}, {is_loop = true, has_prefix = false}}
+print(init_tbl[1].a) -- 1
+print(init_tbl[2].has_prefix) --false
+```
+我们不能使用负索引来初始化，还有一种更通用的方式来初始化字符串索引的表,使用[exp] (中括号加字符串的方式来表示字符串索引)
+```lua
+week_tbl = {["mon"] = 1, ["tues"] = 2, ["wed"] = 3, ["thu"] = 4, ["fri"] = 5, ["sat"] = 6, ["sun"] = 7}
+print(week_tbl["mon"]) -- 1
+```
+表初化的最后一个域后的逗号是可选的，可加可不加，加上是为了经后的扩展，逗号也可以用分号(;)来替代，通过的做法是
+同类型的用逗号，不同类型间的用分号分隔
+```lua
+type_tbl = {num = 10, 100; str = "string", "value"; boolean = false, true}
+```
+<!-- March 10, 2015 10:44 PM -->
 
 
 

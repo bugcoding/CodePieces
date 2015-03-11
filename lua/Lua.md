@@ -50,7 +50,8 @@ var_def_str = 'string' --定义了一个字符串
 var_def_bool = false --定义了一个布尔类型
 ```
 2. __局部变量__
-如果你想定义一下局部变量，需要在变量前加"local"关键字。
+如果你想定义一下局部变量，需要在变量前加"local"关键字。应该尽可能使用局部变量，因为一来可以避免冲突
+二来局部变量访问速度快于全局变量
 ```lua
 local var_def_loc_num = 20 --定义了一个局部变量
 ```
@@ -275,6 +276,141 @@ print(week_tbl["mon"]) -- 1
 type_tbl = {num = 10, 100; str = "string", "value"; boolean = false, true}
 ```
 <!-- March 10, 2015 10:44 PM -->
+
+**语法**
+1. __赋值语句__
+单变量赋值，像c语言一样，等号左边是变量右边是表达式
+```lua
+assign_var = 100
+var_str = "pre" .. "str"
+```
+多变量赋值
+左边是用逗号分隔开的一个变量的列表，右边是表达式的列表，如果变量数目多于表达式个数，则后面的变量是nil
+如果表达式数目多于变量数目，那么多的表达式就会丢弃
+```lua
+x, y, z = 100, false, "multi" .. " assignment"
+a, b = 10, 20, 30 --30会被丢弃
+k, l, m = 1, 2 -- m --> nil
+```
+交换变量，在lua中交换二个变量非常简单，反序赋值就可以了
+```lua
+x = 10; y = 20
+x, y = y, x -- 完成了交换 x --> 20, y --> 10
+```
+
+**流程控制语句**
+1. __if..else__
+形式是这样的
+```lua
+x = nil
+--单个的if
+if not x then
+	   x = 100
+end
+--if与else
+if x == 100 then
+	   x = x - 10
+else
+	   x = x + 10
+end
+--if..elif..else
+if x == 100 then
+	    print(x)
+elif x == 10 then
+	    print("x == 10")
+else
+	    print("else condition")
+end
+```
+2. __while__
+形式是
+```lua
+index = 1
+fact = 1
+while i < 10
+	   fact = fact * i
+end
+print(fact)
+```
+3. __repeat..until__
+类似于c语言的do..while
+```lua
+i = 1
+sum = 0
+-- compute 1 to 10 summary
+repeat
+	   sum = sum + i
+	   i = i + 1
+until i > 9
+print(sum)
+```
+4. __for循环__
+普通for循环
+```lua
+--1 to 20 with 2 increament
+start = 1 --起始值
+end = 20 -- 结束值，由start与end构成的
+step = 2 -- 每次循环i的增量，可为负值
+-- !此处的i是局部变量，只在for循环的作用域内起作用
+for i = start, end, step do
+	   print(i)
+end
+```
+范型for循环, 通过ipairs与pairs迭代器
+```lua
+--输出数组中所有的数值
+tbl = {1, 3, 5, 6; false; "end"}
+for i, v in ipairs(tbl) do
+	print(v)
+end
+--输出表中的key
+for i in pairs(tbl) do
+	   print(tbl[i])
+end
+```
+ipairs 只能迭代到表中非整数的key为止，并且不返回nil，只返回0，遇到nil就退出
+pairs 能迭代表中所有的key，并且能返回nil
+```lua
+tbl_es = {[1] = "11", [2] = "22", [5] = "55", ["six"] = false}
+--只输入11与22，因为迭代到3的时候是nil，遇到nil就直接跳出了
+for i, v in ipairs(tbl_es) do
+	   print(v)
+end
+--遍历所有的表中的key
+for i in pairs(tbl_es) do
+	   print(tbl_es[i])
+end
+```
+5. __break与return__
+break作用与c语言相同都是跳出循环的，在lua中包括while， repeat..while， for循环
+return是从函数中返回值用的，一般的时候都是出现一个语句块的最后，但是如果有需要在中间需要return的
+时候需要使用do..end括起来形成一个语句块
+```lua
+function return_test()
+	   for i = 1, 100, 2 do
+	       if i == 13 then
+	          do return end
+	       else
+	          print(i)
+	   end
+end
+```
+
+<!--March 11, 2015 9:32 PM-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

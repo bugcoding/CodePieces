@@ -36,7 +36,4 @@ some personal code, c/c++, python, vimconfig etc...
 
   like flappy bird, do not touch screen with finger, use mouth to blow to phone mic
 
-  ​
-
-  ​
 

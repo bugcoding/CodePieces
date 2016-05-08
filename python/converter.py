@@ -4,7 +4,7 @@
 #     FileName: Convert.py
 #         Desc: 
 #       Author: bugcode
-#        Email: bugcodingt@163.com
+#        Email:
 #     HomePage: 
 #      Version: 0.0.1
 #   LastChange: 2014-05-29 16:15:31

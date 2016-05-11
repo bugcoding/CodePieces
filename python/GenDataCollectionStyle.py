@@ -2,7 +2,6 @@
 # encoding: utf-8
 __author__ = 'bugcode'
 
-str = "子、鼠、丑、牛、虎、兔、龙、蛇、马、羊、猴、鸡"
 import sys
 
 class GenInitDefine(object):
@@ -47,12 +46,14 @@ class GenInitDefine(object):
         names = self.getAllLangName()
         if names == None:
             return
+        dict = {}
         for index in range(len(names)):
             # 生成所有已定义语言的格式化形式
             name = names[index]
             title = name + "[" + self.__gen_style + "]"
             genRes = self.genArrayStyle(name)
-            print("name = " + name + " res = " + genRes)
+            dict[name] = genRes
+        return dict
 
     # 为方便扩展，这里对每个不同语言使用不同的函数进行生成
     def genArrayStyle(self, lang):
@@ -81,4 +82,4 @@ if len(sys.argv) == 2:
 elif len(sys.argv) == 3:
     gid = GenInitDefine(sys.argv[1], sys.argv[2])
             
-gid.genAllArrayStyleDefine()
+print(gid.genAllArrayStyleDefine())

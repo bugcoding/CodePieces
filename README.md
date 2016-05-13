@@ -39,5 +39,5 @@ some personal code, c/c++, python, vimconfig etc...
 
 ### workflows
 
-- Alfred workflows make by myself.
+- Alfred workflows make by myself
 

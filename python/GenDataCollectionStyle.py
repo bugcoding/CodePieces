@@ -3,6 +3,8 @@
 __author__ = 'bugcode'
 
 import sys
+import re
+from workflow import Workflow, ICON_WEB, web
 
 class GenInitDefine(object):
     # 源字符串
@@ -72,14 +74,34 @@ class GenInitDefine(object):
             final_str += "\"" + tmpList[index] + "\"" + comma 
 
         final_str += suffix	
-        return final_str
-        
+        return final_str.decode("utf8")
 
-# 命令行参数都齐全的情况下
-if len(sys.argv) == 2:
-    #print("argv1 = " + sys.argv[1] + " argv2 = " + sys.argv[2])
-    gid = GenInitDefine(sys.argv[1], " ")
-elif len(sys.argv) == 3:
-    gid = GenInitDefine(sys.argv[1], sys.argv[2])
-            
-print(gid.genAllArrayStyleDefine())
+
+def main(wf):
+    dict = {}
+    ## 命令行参数都齐全的情况下
+    if len(sys.argv) == 2:
+        ##print("argv1 = " + sys.argv[1] + " argv2 = " + sys.argv[2])
+        cmd = sys.argv[1].strip().split("->")
+        cmd2 = " "
+        if len(cmd) == 2:
+            cmd2 = " " if cmd[1].strip() == "" else cmd[1].strip()
+
+        gid = GenInitDefine(cmd[0].strip(), cmd2)
+        dict = gid.genAllArrayStyleDefine()
+        
+    
+    cnt = 1
+    keys = dict.keys()
+    for index in range(len(keys)):
+        #print(keys[index])
+        wf.add_item(keys[index], dict[keys[index]], arg=dict[keys[index]], uid=str(cnt), valid=True)
+        cnt += 1
+    # 将最终结果以xml格式反馈给控制台或者Alfred
+    wf.send_feedback()
+
+
+if __name__ == '__main__':
+    wf = Workflow()
+    sys.exit(wf.run(main))
+

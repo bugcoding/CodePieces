@@ -7,7 +7,7 @@ some personal code, c/c++, python, vimconfig etc...
 ### c/c++
 
 - coding exercise
-- some personal lib in c/c++
+- some personal libs in c/c++
 
 ### python
 
@@ -26,7 +26,7 @@ some personal code, c/c++, python, vimconfig etc...
 
 - **snake**
 
-  snake game code for test cocos2dx 3.0
+  snake game for testing cocos2dx 3.0
 
 - **2048**
 

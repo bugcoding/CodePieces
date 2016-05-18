@@ -2,7 +2,7 @@
 codeplay
 ===========
 
-some personal code, c/c++, python, vimconfig etc...
+some personal code, c/c++, python, vimconfig, Alfred workflows etc...
 
 ### c/c++
 

@@ -22,7 +22,7 @@ some personal code, c/c++, python, vimconfig, Alfred workflows etc...
 
 - **airplane**
 
-  plane game in cocos2dx, like ‘1942’ in family computer
+  plane game in cocos2dx, similar to ‘1942’ in family computer
 
 - **snake**
 
@@ -30,7 +30,7 @@ some personal code, c/c++, python, vimconfig, Alfred workflows etc...
 
 - **2048**
 
-  2048 game implementation
+  2048 game implementation by cocos2dx
 
 - **wind bird**
 

@@ -6,7 +6,6 @@ some personal code, c/c++, python, vimconfig, Alfred workflows etc...
 
 ### c/c++
 
-- coding exercise
 - some personal libs in c/c++
 
 ### python
@@ -34,8 +33,7 @@ some personal code, c/c++, python, vimconfig, Alfred workflows etc...
 
 - **wind bird**
 
-  like flappy bird, do not touch screen with finger, use mouth to blow to phone mic
-
+  like flappy bird, do not need to touch screen with finger, use mouth to blow to phone mic
 
 ### workflows
 

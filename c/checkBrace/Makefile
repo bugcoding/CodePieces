@@ -1,6 +1,5 @@
 #¿®∫≈∆•≈‰Makefile
 
-
 CC = gcc
 FLAGS = -Wall -std=c99
 OBJECT = main.o braceStack.o handleInput.o
@@ -18,4 +17,3 @@ handleInput.o: handleInput.c handleInput.h
 .PHONY: clean
 clean:
 	del $(OBJECT) main.exe
-

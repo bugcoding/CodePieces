@@ -21,7 +21,7 @@ some personal code, c/c++, python, vimconfig, Alfred workflows etc...
 
 - **airplane**
 
-  plane game in cocos2dx, similar to â€?1942â€? in family computer
+  plane game in cocos2dx, similar to 1942 in family computer
 
 - **snake**
 

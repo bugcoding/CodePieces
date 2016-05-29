@@ -34,11 +34,11 @@ endfunction
 let OmniCpp_ShowAccess = 1
 "显示函数参数列表
 let OmniCpp_ShowPrototypeInAbbr = 1
-"输入.后自动补全
+"输入.后自动补�?
 let OmniCpp_MayCompleteDot = 1
 "输入->自动补全
 let OmniCpp_MayCompleteArrow = 1
-"输入::后自动补全
+"输入::后自动补�?
 let OmniCpp_MayCompleteScope = 1
 let OmniCpp_DefaultNamespaces = ["std", "_GLIBCXX_STD"]
 let OmniCpp_SelectFirstItem = 2
@@ -50,9 +50,9 @@ au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
 set completeopt=menuone,menu,longest
 "----------------------OmniCppComplete_END_------------------------------------
 
-"设置tab键默认补全
+"设置tab键默认补�?
 "----------------------SuperTab_BEGIN_-----------------------------------------
-""let g:SuperTabDefaultCompletionType = "<C-x><C-p>" 
+""let g:SuperTabDefaultCompletionType = "<C-x><C-p>"
 "----------------------SuperTab_END_-------------------------------------------
 
 
@@ -63,7 +63,7 @@ set completeopt=menuone,menu,longest
 ""let g:winManagerWindowLayout = "BufExplorer,FileExplorer|TagList"
 let g:winManagerWindowLayout="NERDTree|TagList,BufExplorer"
 
-"设置winmanager的宽度，默认为25 
+"设置winmanager的宽度，默认�?25
 let g:winManagerWidth = 26
 
 "定义打开关闭winmanager按键
@@ -109,16 +109,16 @@ winpos 120 6
 "窗口大小
 set lines=35 columns=110
 
-"高亮当前列
+"高亮当前�?
 "set cursorcolumn
 
 "搜索高亮
 "set hlsearch
 
-"底部滚动条
+"底部滚动�?
 set guioptions+=b
 
-"多标签
+"多标�?
 ":tabedit
 
 "多标签快捷键操作
@@ -131,25 +131,25 @@ set guioptions+=b
 :imap  <F5> <ESC>:tabnew<CR>i
 :imap  <F4> <ESC>:tabc<CR>i
 
-"设定光标离窗口上下边界 7 行时窗口自动滚动
+"设定光标离窗口上下边�? 7 行时窗口自动滚动
 set scrolloff=7
 
-"命令行高度
+"命令行高�?
 set cmdheight=1
 
-"显示命令行
+"显示命令�?
 set showcmd
 
-"缩进的宽度
+"缩进的宽�?
 set tabstop=4
 
 "自动缩进宽度
 set shiftwidth=4
 
-"隐藏工具栏
+"隐藏工具�?
 "set guioptions-=T
 
-"隐藏菜单栏
+"隐藏菜单�?
 "set guioptions-=m
 
 ""菜单栏和工具栏的动态显示和隐藏
@@ -161,18 +161,18 @@ map <silent> <F2> :if &guioptions =~# 'm' <Bar>
     \set guioptions+=m <Bar>
 \endif<CR>
 
-"隐藏底部滚动条
-set guioptions-=b 
+"隐藏底部滚动�?
+set guioptions-=b
 
-"设置按BackSpace的时候可以一次删除掉4个空格
+"设置按BackSpace的时候可以一次删除掉4个空�?
 set softtabstop=4
 
 set expandtab
 
-"python文件的缩进设置
+"python文件的缩进设�?
 autocmd FileType python setlocal tabstop=4 shiftwidth=4 softtabstop=4 textwidth=79
 
-"命令行增强模式
+"命令行增强模�?
 set wildmenu
 
 "行距
@@ -191,19 +191,19 @@ set linespace=0
 "其他相关
 "-------------------其他_BEGIN_---------------------
 
-"光标可一直向左移动
+"光标可一直向左移�?
 set whichwrap=b,s,<,>,[,]
 
 "防止特殊符号无法正常显示
 set ambiwidth=double
 
-"设置菜单显示为英文
+"设置菜单显示为英�?
 set langmenu=en_US
 let $LANG = 'en_US'
 source $VIMRUNTIME/delmenu.vim
 source $VIMRUNTIME/menu.vim
 
-"编码检测
+"编码检�?
 set fileencodings=ucs-bom,utf-8,cp936,gb18030,big5,euc-jp,euc-kr,latin1
 ""set termencoding=utf-8
 set encoding=utf-8
@@ -214,19 +214,19 @@ set nobackup
 set noswapfile
 set nowritebackup
 
-"插件自动检测
+"插件自动检�?
 filetype plugin on
-filetype plugin indent on 
+filetype plugin indent on
 
-"文件类型自动检测
+"文件类型自动检�?
 filetype on
 
-"vim主题, 根据不同的文件使用不同的主题， python的主题更好看一些
+"vim主题, 根据不同的文件使用不同的主题�? python的主题更好看一�?
 function g:SetColorscheme()
 if &filetype == "python"
     colorscheme	gummybears
 else
-    colorscheme	desertEx 
+    colorscheme	desertEx
     set cursorline
         hi cursorline guibg=#333333
 endif
@@ -237,7 +237,7 @@ colorscheme	desertEx
 
 "不同系统下的字体选择
 if has('win32')
-""set guifont=Meslo\ LG\ S\ for\ Powerline:h11:cANSI	
+""set guifont=Meslo\ LG\ S\ for\ Powerline:h11:cANSI
 set guifont=Menlo\ for\ Powerline:h11:cANSI
 elseif has('unix')
 let &guifont="Monospace 10"
@@ -249,10 +249,10 @@ set nocompatible
 " 每行超过80个的字符用下划线标示
 au BufRead,BufNewFile *.asm,*.c,*.cpp,*.java,*.cs,*.sh,*.lua,*.pl,*.pm,*.py,*.rb,*.hs,*.vim 2match Underlined /.\%80v/
 
-" 更改Leader为","
+" 更改Leader�?","
 let g:mapleader = ","
 
-"语法高亮开启
+"语法高亮开�?
 syntax enable
 
 "txtbrowser插件
@@ -265,7 +265,7 @@ autocmd! bufwritepost .vimrc source D:\Program\ Files\Vim\_vimrc
 " 不要闪烁
 set vb t_vb=
 set novb
-"去掉按ENTER的那个提示
+"去掉按ENTER的那个提�?
 command! -nargs=1 Silent
 \ | execute ':silent !'.
 \ | execute ':redraw!'
@@ -303,15 +303,15 @@ command! -nargs=1 Silent
 \ | execute ':redraw!'
 
 
-"快速对齐映射
-vnoremap <silent> <Enter> :EasyAlign<cr> 
+"快速对齐映�?
+vnoremap <silent> <Enter> :EasyAlign<cr>
 
 "-------------------其他_END_-----------------------
 
 
 ""Vim-airline
 "-------------------Vim-Airline_BEGIN_-----------------------
-"分隔符
+"分隔�?
 let g:airline_right_sep = ''
 "显示时间
 let g:airline_section_z = '%{strftime("%c")}'
@@ -336,24 +336,24 @@ set nu
 hi LineNr guifg=#555555 gui=none
 
 "行号显示宽度
-set nuw=1 
+set nuw=1
 "-----------------行号设置_END_------------------
 
 "代码提示辅助相关
 "-----------------代码辅助提示_BEGIN_---------------------
-" 设置代码提示窗口的颜色（默认为粉红色）
+" 设置代码提示窗口的颜色（默认为粉红色�?
 highlight Pmenu ctermbg=13 guibg=#80c040 guifg=Black
 highlight PmenuSel ctermbg=7 guibg=#a06000 guifg=White
 highlight PmenuSbar ctermbg=7 guibg=Black
 highlight PmenuThumb guibg=Black
 
-"代码行折叠
-"set foldenable " 开始折叠
+"代码行折�?
+"set foldenable " 开始折�?
 "set foldmethod=syntax " 设置语法折叠
-"set foldcolumn=0 " 设置折叠区域的宽度
-"setlocal foldlevel=1 " 设置折叠层数为
-"set foldclose=all " 设置为自动关闭折叠
-"nnoremap <space> @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR> " 用空格键来开关折叠
+"set foldcolumn=0 " 设置折叠区域的宽�?
+"setlocal foldlevel=1 " 设置折叠层数�?
+"set foldclose=all " 设置为自动关闭折�?
+"nnoremap <space> @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR> " 用空格键来开关折�?
 
 " 多行注释时样子更好看
 let NERDCompactSexyComs=1
@@ -361,7 +361,7 @@ let NERDCompactSexyComs=1
 "删除多余行尾空格
 nmap  :%s= *$==
 
-"使得注释换行时自动加上前导的空格和星号
+"使得注释换行时自动加上前导的空格和星�?
 set formatoptions=tcqro
 
 " 自动补全括号，包括大括号(此处配合auto_pairs插件)
@@ -380,38 +380,38 @@ else
 endif
 endf
 
-"<F4>添加作者信息
-let g:vimrc_author='bugcode' 
-let g:vimrc_email='bugcoding@gmail.com' 
-let g:vimrc_homepage='http://bugcode.com.cn' 
+"<F4>添加作者信�?
+let g:vimrc_author='bugcode'
+let g:vimrc_email='bugcoding@gmail.com'
+let g:vimrc_homepage='http://bugcode.com.cn'
 
-nmap <F4> :AuthorInfoDetect<cr> 
+nmap <F4> :AuthorInfoDetect<cr>
 
-"调用AStyle程序，进行代码美化
+"调用AStyle程序，进行代码美�?
 function! CodeFormat()
-      "取得当前光标所在行号
+      "取得当前光标所在行�?
       let lineNum = line(".")
-      "C源程序
+      "C源程�?
       if &filetype == 'c'
-             "执行调用外部程序的命令
+             "执行调用外部程序的命�?
               exec "%! astyle -A1Lfpjk3NS\<CR>"
-      "H头文件(文件类型识别为cpp)，CPP源程序
+      "H头文�?(文件类型识别为cpp)，CPP源程�?
       elseif &filetype == 'cpp'
-             "执行调用外部程序的命令
+             "执行调用外部程序的命�?
              exec "%! astyle -A1Lfpjk3NS\<CR>"
-      "JAVA源程序
+      "JAVA源程�?
       elseif &filetype == 'java'
-             "执行调用外部程序的命令
+             "执行调用外部程序的命�?
              exec "%! astyle -A1Lfpjk3NS\<CR>"
-      else 
+      else
              "提示信息
-             echo "不支持".&filetype."文件类型。"
+             echo "不支�?".&filetype."文件类型�?"
       endif
       "返回先前光标所在行
       exec lineNum
 endfunc
 
-"映射代码美化函数到Shift+f快捷键
+"映射代码美化函数到Shift+f快捷�?
 map <C-S-f> <Esc>:call CodeFormat()<CR>
 
 "单词中间不能断行
@@ -419,7 +419,7 @@ set lbr
 "对亚洲语言支持
 set fo+=mB
 
-"统计所有字符
+"统计所有字�?
 command! -nargs=0 CountChars         :%s/./&/gn|noh
 
 "统计当前所有单词数
@@ -431,14 +431,14 @@ command! -nargs=0 CountWords         :%s/\i\+/&/gn|noh
 
 
 "状态条显示
-"set statusline=%F%m%r%w\ [FORMAT=%{&ff}]\[TYPE=%Y]\[POS=%l,%v]\[ASC=%b]\[HEX=0X%B]\ 
+"set statusline=%F%m%r%w\ [FORMAT=%{&ff}]\[TYPE=%Y]\[POS=%l,%v]\[ASC=%b]\[HEX=0X%B]\
 
 "显示状态栏
 set laststatus=2
 "底栏时间
 "set statusline+=[%{strftime(\"%m-%d\ %H:%M:%S\")}]
 
-"设置状态栏根据不同状态显示不同颜色
+"设置状态栏根据不同状态显示不同颜�?
 "function!! InsertStatuslineColor(mode)
 "    if a:mode == 'i'
 "        hi statusline guibg=Yellow
@@ -459,10 +459,10 @@ set laststatus=2
 hi VertSplit guibg=#31312D guifg=#526A83 ctermfg=Black ctermbg=Black term=none cterm=none gui=none
 "状态栏
 "hi StatusLineNC guibg=#31312D guifg=#526A83 ctermfg=White ctermbg=Black term=none cterm=none gui=none
-"折叠行
-hi FoldColumn guibg=#31312D guifg=#526A83 ctermfg=Black ctermbg=darkgreen term=none cterm=none gui=none 
+"折叠�?
+hi FoldColumn guibg=#31312D guifg=#526A83 ctermfg=Black ctermbg=darkgreen term=none cterm=none gui=none
 
-"当前行高亮
+"当前行高�?
 set cursorline
 hi cursorline guibg=#333333
 ""hi CursorLine   gui=underline guibg=#202020 guifg=NONE
@@ -479,12 +479,12 @@ else
 endif
 endfunction
 
-"显示缩进线
+"显示缩进�?
 "map ,in :call EchoIndentLine()<CR>
 function! EchoIndentLine()
-se list 
-"se lcs=tab:>- 
-set lcs=tab:\|\ 
+se list
+"se lcs=tab:>-
+set lcs=tab:\|\
 hi SpecialKey guifg=#333333
 endfunction
 
@@ -494,29 +494,29 @@ endfunction
 
 "编译文件
 "--------------------编译文件_BEGIN_-------------------------------------
-" 编译C源文件
+" 编译C源文�?
 "func! CompileGcc()
 "    exec "w"
 "    let compilecmd="!gcc -Wall -pedantic -std=c99 "
 "    let compileflag="-o %<"
 "    exec compilecmd." % ".compileflag
 "endfunc
-" 
-"" 编译C++源文件
+"
+"" 编译C++源文�?
 "func! CompileCpp()
 "    exec "w"
 "    let compilecmd="!g++ -Wall -pedantic -std=c++98 "
 "    let compileflag="-o %<"
 "    exec compilecmd." % ".compileflag
 "endfunc
-" 
-"" 编译Java源文件
+"
+"" 编译Java源文�?
 "func! CompileJava()
 "    exec "w"
 "    exec "!javac %"
 "endfunc
 "
-"" 根据文件类型自动选择相应的编译函数
+"" 根据文件类型自动选择相应的编译函�?
 "func! CompileCode()
 "        exec "w"
 "     if &filetype == "c"
@@ -535,7 +535,7 @@ endfunction
 "endfunc
 "
 "
-"" 运行可执行文件
+"" 运行可执行文�?
 "func! RunResult()
 "     exec "w"
 "     if &filetype == "c"
@@ -551,7 +551,7 @@ endfunction
 "     endif
 "endfunc
 "
-""定义Debug函数，用来调试程序
+""定义Debug函数，用来调试程�?
 func! Debug()
 exec "w"
 if &filetype == 'c'
@@ -565,54 +565,18 @@ endfunc
 "结束定义Debug
 
 
-" Shift + C 一键保存、编译
+" Shift + C 一键保存、编�?
 ""map <S-c> :call CompileCode()<CR><ESC>
 "imap  <ESC>:call CompileCode()<CR><ESC>
 "vmap  <ESC>:call CompileCode()<CR><ESC>
 
-" Shift + R 一键保存、运行
+" Shift + R 一键保存、运�?
 "p <S-r> :call RunResult()<CR><ESC>
 "imap <ESC>:call RunResult()<CR><ESC>
 "vmap <ESC>:call RunResult()<CR><ESC>
 
 "Shift + D GDB调试
 map <S-d> :call Debug()<CR><ESC>
-
-
-"SDL编译 
-function! CompileSDL()
-  exec "w"
-  let compilecmd="!gcc -Wall -pedantic -std=c99"
-  let linkflag=" -lmingw32 -lSDLmain -lSDL"
-  let compileflag="-o %<"
-  exec compilecmd." % ".compileflag.linkflag
-endfunction
-
-"go编译
-function! CompileGO()
-exec "w"
-let cmd="!go build "
-let flag="-o %<"
-exec cmd.flag.".exe"." %"
-endfunction
-
-map <M-g> :call CompileGO()<CR><ESC>
-
-"SDL运行
-"function! Run()
- "exec "w"
- "if &filetype == "c"
-     "exec "! %<"
- "elseif &filetype == "cpp"
-     "exec "! %<"
- "elseif &filetype == "go"
-     "exec "! %<"	 
- "endif
-"endfunction
-
-""映射SDL编译与运行快捷键
-"map <S-s> :call CompileSDL()<CR><ESC>
-"map <M-r> :call Run()<CR><ESC>
 
 
 "快速运行php
@@ -636,7 +600,7 @@ endfunction
 
 nmap <M-r> :call RunScriptFile() <CR><ESC>
 
-"直接编译本文件并生成目标文件，并马上与libpng静态库链接生成可执行文件
+"直接编译本文件并生成目标文件，并马上与libpng静态库链接生成可执行文�?
 func! CompilePng()
 exec "w"
     if &filetype == "c"
@@ -658,7 +622,7 @@ func! RunSameFile()
         let exe_file_name = file_name
     endif
     if filereadable(exe_file_name)
-        let runcmd = "!%<" 
+        let runcmd = "!%<"
         exec runcmd
     else
         echo exe_file_name." not exist!"
@@ -697,8 +661,8 @@ set makeprg=d:\pclint\LINT-NT.exe\ -u\ d:\PCLint\std.lnt\ d:\PCLint\env-vc6.lnt\
 
 ""代码阅读
 ""--------------------------------------rainbow config_BEGIN---------------------------------
-let g:rainbow_active = 0 
-let g:rainbow_operators = 2 
+let g:rainbow_active = 0
+let g:rainbow_operators = 2
 ""--------------------------------------rainbow config_END---------------------------------
 
 "快捷键打开vimrc和快速载入vimrc
@@ -706,6 +670,3 @@ let g:rainbow_operators = 2
 map <silent> <leader>sv : so $vim/_vimrc<CR>
 map <silent> <leader>se : e $vim/_vimrc<CR>
 ""--------------------------------------loading vimrc_END-----------------------------------
-
-
-

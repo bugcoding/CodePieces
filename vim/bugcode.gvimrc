@@ -1,6 +1,9 @@
 set nocompatible
 source $VIMRUNTIME/vimrc_example.vim
-source $VIMRUNTIME/mswin.vim
+
+if has("win32")
+    source $VIMRUNTIME/mswin.vim
+endif
 
 set diffexpr=MyDiff()
 function! MyDiff()
@@ -647,9 +650,11 @@ map <S-r> :call RunSameFile() <CR><ESC>
 
 
 "-------------------PCLint_BEGIN_------------------------------------------------------
-set errorformat=%f(%l):\ %t%*[^0-9]%n:\ %m
-
-set makeprg=d:\pclint\LINT-NT.exe\ -u\ d:\PCLint\std.lnt\ d:\PCLint\env-vc6.lnt\ \"%\"
+" windows only
+if has('win32')
+    set errorformat=%f(%l):\ %t%*[^0-9]%n:\ %m
+    set makeprg=d:\pclint\LINT-NT.exe\ -u\ d:\PCLint\std.lnt\ d:\PCLint\env-vc6.lnt\ \"%\"
+endif
 
 "-------------------PCLint_END_--------------------------------------------------------
 

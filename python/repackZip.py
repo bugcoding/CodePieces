@@ -1,11 +1,11 @@
 
 #coding=utf-8
 
-import os,os.path
+import os.path
 import zipfile
 import shutil
 
-# 压缩指定文件夹下文件到指定zip文件里
+# 鍘嬬缉鎸囧畾鏂囦欢澶逛笅鏂囦欢鍒版寚瀹歾ip鏂囦欢閲?
 def zip_dir(dirname,zipfilename):
     filelist = []
     if os.path.isfile(dirname):
@@ -23,7 +23,7 @@ def zip_dir(dirname,zipfilename):
     zf.close()
 
 
-# 解压指定zip文件到指定文件夹内
+# 瑙ｅ帇鎸囧畾zip鏂囦欢鍒版寚瀹氭枃浠跺す鍐?
 def unzip_file(zipfilename, unziptodir):
     if not os.path.exists(unziptodir): os.makedirs(unziptodir, 0777)
     zfobj = zipfile.ZipFile(zipfilename)
@@ -40,7 +40,7 @@ def unzip_file(zipfilename, unziptodir):
             outfile.write(zfobj.read(name))
             outfile.close()
 
-# 遍历指定文件夹下的zip文件
+# 閬嶅巻鎸囧畾鏂囦欢澶逛笅鐨剒ip鏂囦欢
 def traverse_dir(dirname):
     cnt = 0
     for lists in os.listdir(dirname):
@@ -49,7 +49,7 @@ def traverse_dir(dirname):
         if lists.endswith('.zip'):
             temp_dir = path[:-4]
             temp_dir_name = lists[:-4]
-            # 解压到与zip文件名相同的临时文件夹中
+            # 瑙ｅ帇鍒颁笌zip鏂囦欢鍚嶇浉鍚岀殑涓存椂鏂囦欢澶逛腑
             unzip_file(path, temp_dir)
             if os.path.exists(temp_dir):
                 lib_dir = temp_dir + "/root/lib"
@@ -57,18 +57,21 @@ def traverse_dir(dirname):
                     for f in os.listdir(lib_dir):
                         if f != "armeabi":
                             final_path = lib_dir + "/" + f
-                            print("======== deleting " + final_path + "==")
+                            print("== deleting " + final_path + "==")
                             shutil.rmtree(final_path)
 
-            # 重新压缩这个目录
+            # 閲嶆柊鍘嬬缉杩欎釜鐩綍
             if os.path.exists(path):
                 os.remove(path)
                 zip_dir(temp_dir_name, temp_dir_name + ".zip")
-                print("\033[1;34;36m%s\033[0m \033[1;31;40m%s\033[0m \033[1;32;38m%s\033[0m " % ("Repack " , "[ "+temp_dir_name+".zip ]", ">>> Completed"))
+                #print("\033[1;34;36m%s\033[0m \033[1;31;40m%s\033[0m \033[1;32;38m%s\033[0m " % ("Repack " , "[ "+temp_dir_name+".zip ]", ">>> Completed"))
+                print("Repack " + "[ " + temp_dir_name + ".zip ] successful")
                 cnt += 1
                 if os.path.exists(temp_dir):
                     shutil.rmtree(temp_dir)
-    print ("TOTAL REPACK \033[1;31;40m%s\033[0m ZIP FILES" % str(cnt))
+    #print ("TOTAL REPACK \033[1;31;40m%s\033[0m ZIP FILES" % str(cnt))
+    print("Total repack " + str(cnt) + " zip files")
 
 if __name__ == '__main__':
     traverse_dir(r'./')
+    os.system("pause")

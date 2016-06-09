@@ -6,7 +6,7 @@ some personal code, c/c++, python, vimconfig, Alfred workflows etc...
 
 ### c/c++
 
-- some personal libs in c/c++
+- some libs in c/c++
 
 ### python
 

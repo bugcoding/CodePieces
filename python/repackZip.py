@@ -20,6 +20,9 @@ FOREGROUND_SKYBLUE = 0x0b
 # 红色
 FOREGROUND_RED = 0x0c
 
+# 输出流handler
+std_out_handle = ctypes.windll.kernel32.GetStdHandle(STD_OUTPUT_HANDLE)
+
 # 压缩指定文件夹下文件到指定zip文件�?
 def zip_dir(dirname,zipfilename):
     filelist = []

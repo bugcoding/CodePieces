@@ -4,8 +4,22 @@
 import os.path
 import zipfile
 import shutil
+import ctypes,sys
 
-# 压缩指定文件夹下文件到指定zip文件�?
+STD_INPUT_HANDLE = -10
+STD_OUTPUT_HANDLE = -11
+STD_ERROR_HANDLE = -12
+
+# 蓝色
+FOREGROUND_BLUE = 0x09
+# 绿色
+FOREGROUND_GREEN = 0x0a
+# 天蓝色
+FOREGROUND_SKYBLUE = 0x0b
+# 红色
+FOREGROUND_RED = 0x0c
+
+# 压缩指定文件夹下文件到指定zip文件�?
 def zip_dir(dirname,zipfilename):
     filelist = []
     if os.path.isfile(dirname):
@@ -23,7 +37,7 @@ def zip_dir(dirname,zipfilename):
     zf.close()
 
 
-# 解压指定zip文件到指定文件夹�?
+# 解压指定zip文件到指定文件夹�?
 def unzip_file(zipfilename, unziptodir):
     if not os.path.exists(unziptodir): os.makedirs(unziptodir, 0777)
     zfobj = zipfile.ZipFile(zipfilename)

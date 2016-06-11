@@ -6,6 +6,7 @@ import zipfile
 import shutil
 import ctypes,sys
 
+# 标准输入，输出，错误流
 STD_INPUT_HANDLE = -10
 STD_OUTPUT_HANDLE = -11
 STD_ERROR_HANDLE = -12

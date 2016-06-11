@@ -1,10 +1,16 @@
-
 #coding=utf-8
+#===================================================
+# 一键解包再打包，命令行输出具体信息
+#===================================================
 
 import os.path
 import zipfile
 import shutil
 import ctypes,sys
+
+EXE_FILE_PATH = ".\\"
+JSON_FILE_PATH = ".\\"
+
 
 # 标准输入，输出，错误流
 STD_INPUT_HANDLE = -10
@@ -23,7 +29,34 @@ FOREGROUND_RED = 0x0c
 # 输出流handler
 std_out_handle = ctypes.windll.kernel32.GetStdHandle(STD_OUTPUT_HANDLE)
 
-# 压缩指定文件夹下文件到指定zip文件�?
+# 设置控制台输出的前景/背景色
+def set_cmd_text_color(color, handle=std_out_handle):
+    Bool = ctypes.windll.kernel32.SetConsoleTextAttribute(handle, color)
+    return Bool
+
+# 重置控制台前景色
+def resetColor():
+    set_cmd_text_color(FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE)
+
+# 控制台输出绿色
+def printGreen(mess):
+    set_cmd_text_color(FOREGROUND_GREEN)
+    sys.stdout.write(mess)
+    resetColor()
+
+# 输出天蓝色
+def printSkyBlue(mess):
+    set_cmd_text_color(FOREGROUND_SKYBLUE)
+    sys.stdout.write(mess)
+    resetColor()
+
+# 输出红色
+def printRed(mess):
+    set_cmd_text_color(FOREGROUND_RED)
+    sys.stdout.write(mess)
+    resetColor()
+
+# 压缩指定文件夹下文件到指定zip文件釿
 def zip_dir(dirname,zipfilename):
     filelist = []
     if os.path.isfile(dirname):
@@ -36,12 +69,11 @@ def zip_dir(dirname,zipfilename):
     zf = zipfile.ZipFile(zipfilename, "w", zipfile.zlib.DEFLATED)
     for tar in filelist:
         arcname = tar[len(dirname):]
-        #print arcname
         zf.write(tar,arcname)
     zf.close()
 
 
-# 解压指定zip文件到指定文件夹�?
+# 解压指定zip文件到指定文件夹冿
 def unzip_file(zipfilename, unziptodir):
     if not os.path.exists(unziptodir): os.makedirs(unziptodir, 0777)
     zfobj = zipfile.ZipFile(zipfilename)
@@ -82,14 +114,31 @@ def traverse_dir(dirname):
             if os.path.exists(path):
                 os.remove(path)
                 zip_dir(temp_dir_name, temp_dir_name + ".zip")
-                #print("\033[1;34;36m%s\033[0m \033[1;31;40m%s\033[0m \033[1;32;38m%s\033[0m " % ("Repack " , "[ "+temp_dir_name+".zip ]", ">>> Completed"))
-                print("Repack " + "[ " + temp_dir_name + ".zip ] successful")
+                printSkyBlue("Repack ")
+                printGreen("[ " + temp_dir_name + ".zip ]") 
+                printSkyBlue(" successful\n")
                 cnt += 1
                 if os.path.exists(temp_dir):
                     shutil.rmtree(temp_dir)
-    #print ("TOTAL REPACK \033[1;31;40m%s\033[0m ZIP FILES" % str(cnt))
-    print("Total repack " + str(cnt) + " zip files")
+    printSkyBlue("Total repack ")
+    printRed("[ " + str(cnt) + " ]")
+    printSkyBlue(" zip files\n")
+
+# 再打包完成后，开始通过工具打包
+def packApk():
+    # 根据onesdk的打包json，直接脚本生成渠道apk， 已假定当前目录是在onesdk的cache中
+    # 确定上层目录的打包可执行文件存在
+    if not os.path.exists(EXE_FILE_PATH):
+        printRed("!!!! [onekey_pack_tool.exe] Must Be Put In [cache] Directory !!!!\n")
+    elif not os.path.exists(JSON_FILE_PATH):
+        printRed("!!!! [" + JSON_FILE_PATH + "] Not Exists, Please Check Root Directory !!!!\n")
+    else:
+        printGreen("Start to packing channel apk ... \n")
+        os.system(EXE_FILE_PATH + " " + JSON_FILE_PATH)
+        printGreen("End to pack apk !\n")
+    
 
 if __name__ == '__main__':
     traverse_dir(r'./')
+    packApk()
     os.system("pause")

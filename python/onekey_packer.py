@@ -126,7 +126,7 @@ def traverse_dir(dirname):
 
 # 再打包完成后，开始通过工具打包
 def packApk():
-    # 根据onesdk的打包json，直接脚本生成渠道apk， 已假定当前目录是在onesdk的cache中
+    # 根据onesdk的打包json，直接脚本生成渠道apk
     # 确定上层目录的打包可执行文件存在
     if not os.path.exists(EXE_FILE_PATH):
         printRed("!!!! [onekey_pack_tool.exe] Must Be Put In [cache] Directory !!!!\n")

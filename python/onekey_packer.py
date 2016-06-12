@@ -12,6 +12,7 @@ EXE_FILE_PATH = ".\\"
 JSON_FILE_PATH = ".\\"
 SPECIAL_DIR_NAME = "armeabi"
 ROOT_LIB_NAME = "root/lib"
+FILE_SUFFIX = ".zip"
 
 
 # 标准输入，输出，错误流
@@ -98,7 +99,7 @@ def traverse_dir(dirname):
     for lists in os.listdir(dirname):
         path = os.path.join(dirname, lists)
         #print path
-        if lists.endswith('.zip'):
+        if lists.endswith(FILE_SUFFIX):
             temp_dir = path[:-4]
             temp_dir_name = lists[:-4]
             # 解压到与zip文件名相同的临时文件夹中

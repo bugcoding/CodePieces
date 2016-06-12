@@ -10,6 +10,8 @@ import ctypes,sys
 
 EXE_FILE_PATH = ".\\"
 JSON_FILE_PATH = ".\\"
+SPECIAL_DIR_NAME = "armeabi"
+ROOT_LIB_NAME = "root/lib"
 
 
 # 标准输入，输出，错误流
@@ -102,10 +104,10 @@ def traverse_dir(dirname):
             # 解压到与zip文件名相同的临时文件夹中
             unzip_file(path, temp_dir)
             if os.path.exists(temp_dir):
-                lib_dir = temp_dir + "/root/lib"
+                lib_dir = temp_dir + ROOT_LIB_NAME
                 if os.path.exists(lib_dir):
                     for f in os.listdir(lib_dir):
-                        if f != "armeabi":
+                        if f != SPECIAL_DIR_NAME:
                             final_path = lib_dir + "/" + f
                             print("== deleting " + final_path + "==")
                             shutil.rmtree(final_path)

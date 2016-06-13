@@ -33,7 +33,7 @@ some personal code, c/c++, python, vimconfig, Alfred workflows etc...
 
 - **wind bird**
 
-  like flappy bird, do not need to touch screen with finger, use mouth to blow to phone mic
+  like flappy bird, do not need to touch screen by finger, use mouth to blow to phone mic
 
 ### workflows
 

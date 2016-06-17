@@ -1,14 +1,9 @@
 /*=============================================================================
-#     FileName: buttonTest.c
-	¿ÉÒÔÓÃÉ¢ÁĞ·¨£¬Éè¾ØÕóarrayÎªM*N,¡£
-
-	Ê×ÏÈ²úÉúÒ»¸ö[0,M*N£©Ö®¼äµÄËæ»úÊıR£¬¸ú×Å¼ì²é 
-	array[R/N][R%N]µÄÄÇ¸ö¸ñ×Ó£¬ÒªÊÇÄÇ¸ö¸ñ×ÓÒÑ¾­ÉèÖÃÁËÀ×£¬
-	¾ÍÊıµ½Ö®ºóµÄµÚÒ»¸öÎª¿ÕµÄ¸ñ×Ó¡£¾ÍËãÀ×µÄÊıÄ¿²î²»¶àÊÇM*NÊıÄ¿µÄÒ»°ëÊ±ºò£¬ÕâÖÖ·½·¨µÄĞ§ÂÊÒ²»á±È½Ï¸ß¡£
-#         Desc:  
+#     FileName: sweep_mine.c
+#         Desc: smiple sweep game
 #       Author: zx
-#        Email: zx_start@163.com
-#     HomePage: 
+#        Email: bugcoding@hotmail.com
+#     HomePage: bugcode.net
 #      Version: 0.0.1
 #   LastChange: 2013-01-01 11:47:05
 =============================================================================*/
@@ -26,31 +21,31 @@
 #define DEBUG printf("%s(%d)--%s\n", __FILE__, __LINE__, __func__);
 
 
-//buttonÎ»ÖÃ
+//buttonä½ç½®
 typedef struct
 {
 	gint x_pos;
 	gint y_pos;
 }button_pos;
 
-static gint button_row_num = 0;//Ã¿ĞĞÓĞ¶àÉÙbutton
-static gint button_col_num = 0;//Ã¿ÁĞÓĞ¶àÉÙbutton
+static gint button_row_num = 0;//æ¯è¡Œæœ‰å¤šå°‘button
+static gint button_col_num = 0;//æ¯åˆ—æœ‰å¤šå°‘button
 
-static gint time_info = 0;//Ê±¼äÏÔÊ¾
-gint time_id = 0;//¶¨Ê±Æ÷id
-static gint mine_num = 0;//À×µÄ×ÜÊı
-static gint real_find_mine = 0;//ÕæÕıÕÒµ½À×µÄÊıÄ¿
-static gint mine_find = 0;//±ê¼ÇµÄÀ×ÊıÄ¿
-GtkWidget *label_find_num = NULL;//±ê¼ÇÀ×ÏÔÊ¾µÄlabel
-GtkWidget *label_time = NULL;//ÏÔÊ¾Ê±¼ä
+static gint time_info = 0;//æ—¶é—´æ˜¾ç¤º
+gint time_id = 0;//å®šæ—¶å™¨id
+static gint mine_num = 0;//é›·çš„æ€»æ•°
+static gint real_find_mine = 0;//çœŸæ­£æ‰¾åˆ°é›·çš„æ•°ç›®
+static gint mine_find = 0;//æ ‡è®°çš„é›·æ•°ç›®
+GtkWidget *label_find_num = NULL;//æ ‡è®°é›·æ˜¾ç¤ºçš„label
+GtkWidget *label_time = NULL;//æ˜¾ç¤ºæ—¶é—´
 gchar find_str[8] = "\0";
-GtkWidget *dialog = NULL;//µ¯´°
+GtkWidget *dialog = NULL;//å¼¹çª—
 
-gboolean **is_press_right;//Ã¿¸ö°´Å¥²»·ñÓÒ»÷¹ı
+gboolean **is_press_right;//æ¯ä¸ªæŒ‰é’®ä¸å¦å³å‡»è¿‡
 
-gint **game_area;//À×ÇøÊı×Ö±íÊ¾
-GtkWidget ***button_array;//°´Å¥Êı×é
-button_pos **pos;//×ø±êµãÊı×é
+gint **game_area;//é›·åŒºæ•°å­—è¡¨ç¤º
+GtkWidget ***button_array;//æŒ‰é’®æ•°ç»„
+button_pos **pos;//åæ ‡ç‚¹æ•°ç»„
 
 gboolean disp_time(gpointer data);
 void malloc_arrays();
@@ -79,7 +74,7 @@ GtkWidget *label_panel_info(gint num);
 
 void malloc_arrays()
 {
-	//°´Å¥Êı×é¿Õ¼ä
+	//æŒ‰é’®æ•°ç»„ç©ºé—´
 	button_array = (GtkWidget ***)malloc(sizeof(GtkWidget **) * button_row_num);
 	assert(button_array != NULL);
 	for (gint i = 0; i < button_row_num; i++)
@@ -87,7 +82,7 @@ void malloc_arrays()
 		*(button_array + i) = (GtkWidget **)malloc(sizeof(GtkWidget *) * button_col_num);
 		assert(*(button_array + i) != NULL);
 	}
-	//ÓÎÏ·Çø¿Õ¼ä
+	//æ¸¸æˆåŒºç©ºé—´
 	game_area = (gint **)malloc(sizeof(gint *) * button_row_num);
 	assert(game_area != NULL);
 	for (gint i = 0; i < button_row_num; i++)
@@ -96,7 +91,7 @@ void malloc_arrays()
 		assert(*(game_area + i) != NULL);
 	}
 
-	//ÓÒ¼ü°´ÏÂÅĞ¶Ï
+	//å³é”®æŒ‰ä¸‹åˆ¤æ–­
 	is_press_right = (gboolean **)malloc(sizeof(gboolean *) * button_row_num);
 	assert(is_press_right != NULL);
 	for (gint i = 0; i < button_row_num; i++)
@@ -104,7 +99,7 @@ void malloc_arrays()
 		*(is_press_right + i) = (gboolean *)malloc(sizeof(gboolean) * button_col_num);
 		assert(*(is_press_right + i) != NULL);
 	}
-	//×ø±êµãÊı×é
+	//åæ ‡ç‚¹æ•°ç»„
 	pos = (button_pos **)malloc(sizeof(button_pos *) * button_row_num);
 	for (gint i = 0; i < button_row_num; i++)
 	{
@@ -113,7 +108,7 @@ void malloc_arrays()
 
 }
 
-//³õÊ¼»¯ÆäËûÈ«¾Ö±äÁ¿
+//åˆå§‹åŒ–å…¶ä»–å…¨å±€å˜é‡
 void init_global()
 {
 	button_row_num = 20;
@@ -122,7 +117,7 @@ void init_global()
 	real_find_mine = 0;
 	mine_find = 0;
 	time_info = 0;
-	time_id = g_timeout_add(1000, disp_time, NULL);//ÓÎÏ·³õÊ¼»¯Ê±¼Ó¶¨Ê±Æ÷
+	time_id = g_timeout_add(1000, disp_time, NULL);//æ¸¸æˆåˆå§‹åŒ–æ—¶åŠ å®šæ—¶å™¨
 }
 void init_arrays()
 {
@@ -136,7 +131,7 @@ void init_arrays()
 	}
 
 }
-//ÊÍ·Å¶¯Ì¬·ÖÅäµÄÊı×é
+//é‡Šæ”¾åŠ¨æ€åˆ†é…çš„æ•°ç»„
 void free_res()
 {
 	for (gint i = 0; i < button_row_num; i++)
@@ -152,19 +147,19 @@ void free_res()
 	free(pos);
 }
 
-//³õÊ¼»¯¸÷ÖÖÓÎÏ·Êı¾İ¼°·ÖÅäÊı¾İ¿Õ¼ä
+//åˆå§‹åŒ–å„ç§æ¸¸æˆæ•°æ®åŠåˆ†é…æ•°æ®ç©ºé—´
 void init_game_info()
 {
 	init_global();
-	//·ÖÅä¿Õ¼ä
+	//åˆ†é…ç©ºé—´
 	malloc_arrays();
 	init_arrays();
-	//³õÊ¼»¯±äÁ¿
-	init_area();//´´½¨±í¸ñÌî³ä°´Å¥µÄÍ¬Ê±²¼ÖÃºÃÀ×Çø
+	//åˆå§‹åŒ–å˜é‡
+	init_area();//åˆ›å»ºè¡¨æ ¼å¡«å……æŒ‰é’®çš„åŒæ—¶å¸ƒç½®å¥½é›·åŒº
 
 }
 
-//¿ØÖÆÌ¨ÁÙÊ±´òÓ¡ÓÎÏ·ÇøµÄ²¼ÖÃ£¬ ·½±ãµ÷ÊÔ
+//æ§åˆ¶å°ä¸´æ—¶æ‰“å°æ¸¸æˆåŒºçš„å¸ƒç½®ï¼Œ æ–¹ä¾¿è°ƒè¯•
 void print()
 {
 	for (gint i = 0; i < button_row_num; i++)
@@ -177,7 +172,7 @@ void print()
 	}
 }
 
-//Îªµİ¹éÕ¹¿ªzero_zone×ö±ß½ç¼ì²é
+//ä¸ºé€’å½’å±•å¼€zero_zoneåšè¾¹ç•Œæ£€æŸ¥
 gboolean check_bound(gint x_pos, gint y_pos)
 {
 
@@ -188,10 +183,10 @@ gboolean check_bound(gint x_pos, gint y_pos)
 	return TRUE;
 }
 
-//Á¬ĞøÕ¹¿ªÎª0µÄÎŞÊı×ÖÎŞÀ×Çø
+//è¿ç»­å±•å¼€ä¸º0çš„æ— æ•°å­—æ— é›·åŒº
 void spread_zero_zone(gint x_pos, gint y_pos)
 {
-	//Ê¹ÓÃµİ¹éµÄ·½Ê½Õ¹¿ªÏàÁ¬µÄ¿Õ°×ÇøÓò
+	//ä½¿ç”¨é€’å½’çš„æ–¹å¼å±•å¼€ç›¸è¿çš„ç©ºç™½åŒºåŸŸ
 	if (check_bound(x_pos - 1, y_pos) && game_area[x_pos - 1][y_pos] == 0 && 
 		gtk_button_get_relief(GTK_BUTTON(button_array[x_pos - 1][y_pos])) != GTK_RELIEF_NONE)
 	{
@@ -219,12 +214,12 @@ void spread_zero_zone(gint x_pos, gint y_pos)
 }
 
 
-//¼ì²éÄ³¸öµãÖÜÎ§ÊÇ·ñÓĞÀ×µÄ´æÔÚ
+//æ£€æŸ¥æŸä¸ªç‚¹å‘¨å›´æ˜¯å¦æœ‰é›·çš„å­˜åœ¨
 gint check_around(button_pos pos)
 {
-	//posµãÖÜÎ§À×µÄ¸öÊı£¬³õÊ¼Îª0
+	//posç‚¹å‘¨å›´é›·çš„ä¸ªæ•°ï¼Œåˆå§‹ä¸º0
 	gint mine_num = 0;
-	//·Ö±ğÔÚposµÄÖÜÎ§ÕÒÀ×
+	//åˆ†åˆ«åœ¨posçš„å‘¨å›´æ‰¾é›·
 	if (check_bound(pos.x_pos - 1, pos.y_pos) && game_area[pos.x_pos - 1][pos.y_pos] == MINE)		
 	{
 		mine_num++;
@@ -258,11 +253,11 @@ gint check_around(button_pos pos)
 	{
 		mine_num++;
 	}
-	//·µ»ØposµãÖÜÎ§À×µÄ¸öÊı
+	//è¿”å›posç‚¹å‘¨å›´é›·çš„ä¸ªæ•°
 	return mine_num;
 }
 
-//³õÊ¼»¯À×ÇøÊı×ÖÓëfill_number_mine×÷ÓÃÏàÍ¬
+//åˆå§‹åŒ–é›·åŒºæ•°å­—ä¸fill_number_mineä½œç”¨ç›¸åŒ
 void fill_mine_info()
 {
 	button_pos pos;
@@ -272,10 +267,10 @@ void fill_mine_info()
 		{
 			pos.x_pos = i;
 			pos.y_pos = j;
-			//µ±Ç°Î»ÖÃ²»ÄÜÊÇÀ×£¬²¢ÇÒ²»ÄÜÔ½½ç
+			//å½“å‰ä½ç½®ä¸èƒ½æ˜¯é›·ï¼Œå¹¶ä¸”ä¸èƒ½è¶Šç•Œ
 			if (game_area[i][j] != MINE && check_around(pos))
 			{
-				//µ±Ç°Î»ÖÃÖÜÎ§ÓĞ¼¸¸öÀ×
+				//å½“å‰ä½ç½®å‘¨å›´æœ‰å‡ ä¸ªé›·
 				game_area[i][j] += check_around(pos);
 			}
 		}
@@ -283,7 +278,7 @@ void fill_mine_info()
 
 }
 
-//³õÊ¼»¯À×Çø
+//åˆå§‹åŒ–é›·åŒº
 void init_area()
 {
 	button_pos pos;
@@ -294,27 +289,27 @@ void init_area()
 		pos.y_pos = (rand() % (button_row_num * button_col_num)) % button_row_num;
 		g_print("x_pos: %d, y_pos:%d\n", pos.x_pos, pos.y_pos);
 
-		while (game_area[pos.x_pos][pos.y_pos] == MINE)//°´ÕÕÉ¢ÁĞµÄ¹æÁĞ²¼À×£¬Èç¹ûËæ»ú³öÀ´µÄµãÒÑ¾­²¼À×£¬ÄÇÃ´¾Í½«´ËÀ×°²ÅÅÏÂ´ËµãµÄÏÂÒ»¸öµã,ÀàËÆÉ¢ÁĞ±í
+		while (game_area[pos.x_pos][pos.y_pos] == MINE)//æŒ‰ç…§æ•£åˆ—çš„è§„åˆ—å¸ƒé›·ï¼Œå¦‚æœéšæœºå‡ºæ¥çš„ç‚¹å·²ç»å¸ƒé›·ï¼Œé‚£ä¹ˆå°±å°†æ­¤é›·å®‰æ’ä¸‹æ­¤ç‚¹çš„ä¸‹ä¸€ä¸ªç‚¹,ç±»ä¼¼æ•£åˆ—è¡¨
 		{
 			pos.x_pos++;
 			pos.x_pos %= button_row_num;
 		}
-		game_area[pos.x_pos][pos.y_pos] = MINE;//É¢ÁĞºó½«À×°²ÖÃ
+		game_area[pos.x_pos][pos.y_pos] = MINE;//æ•£åˆ—åå°†é›·å®‰ç½®
 		i++;
 	}
-	//²¼ÖÃºÃÀ×µÄÎ»ÖÃ£¬Ìî³äÀ×ÅÔ±ßµÄÊı×Ö
+	//å¸ƒç½®å¥½é›·çš„ä½ç½®ï¼Œå¡«å……é›·æ—è¾¹çš„æ•°å­—
 	fill_mine_info();
 }
 
-//ÖØĞÂ³õÊ¼»¯´°Ìå
+//é‡æ–°åˆå§‹åŒ–çª—ä½“
 void reset_interface(GtkWidget *widget, gpointer data)
 {
-	gtk_widget_hide(data);//Òş²Ø×Ó´°Ìå
-	init_global();//ÖØĞÂ³õÊ¼»¯È«¾Ö±äÁ¿
+	gtk_widget_hide(data);//éšè—å­çª—ä½“
+	init_global();//é‡æ–°åˆå§‹åŒ–å…¨å±€å˜é‡
 	init_arrays();
-	init_area();//³õÊ¼»¯ÓÎÏ·Çø
+	init_area();//åˆå§‹åŒ–æ¸¸æˆåŒº
 
-	//buttonĞÎ×´¸´Ô­
+	//buttonå½¢çŠ¶å¤åŸ
 	for (gint i = 0; i < button_row_num; i++)
 	{
 		for (gint j = 0; j < button_col_num; j++)
@@ -325,7 +320,7 @@ void reset_interface(GtkWidget *widget, gpointer data)
 	}
 	print();
 }
-//ÍË³öµ¯´°ÌáÊ¾
+//é€€å‡ºå¼¹çª—æç¤º
 void quit_dialog(gchar *message)
 {
 	assert(message != NULL);
@@ -355,7 +350,7 @@ void quit_dialog(gchar *message)
 	gtk_widget_show_all(dialog);
 }
 
-//buttonÉÏ·ÅÍ¼Æ¬
+//buttonä¸Šæ”¾å›¾ç‰‡
 void put_image_button(GtkContainer *con, gchar *file_name)
 {
 	assert(file_name != NULL);
@@ -363,7 +358,7 @@ void put_image_button(GtkContainer *con, gchar *file_name)
 	gtk_container_set_border_width(GTK_CONTAINER(con), 1);
 	gtk_container_add(GTK_CONTAINER(con), img);
 }
-//µãµ½À×ºó£¬·­¿ªËùÓĞµÄbutton
+//ç‚¹åˆ°é›·åï¼Œç¿»å¼€æ‰€æœ‰çš„button
 void open_all_button()
 {
 	char temp[5] = "\0";
@@ -389,7 +384,7 @@ void open_all_button()
 	}
 }
 
-//¿Õ°×²¿·Ö±ßÔµµÄÊı×ÖÏÔÊ¾£¬ÏñwinÏÂµÄÉ¨À×
+//ç©ºç™½éƒ¨åˆ†è¾¹ç¼˜çš„æ•°å­—æ˜¾ç¤ºï¼Œåƒwinä¸‹çš„æ‰«é›·
 void disp_none_border()
 {
 	gchar temp[5] = "\0";
@@ -430,26 +425,26 @@ void disp_none_border()
 }
 
 
-//×ó¼ü´¦Àí
+//å·¦é”®å¤„ç†
 void left_press_button(GtkWidget *widget, button_pos *pos_data)
 {
 	char label[3] = "\0";
-		//buttonÃ»ÓĞ±»ÓÒ¼ü°´ÏÂ£¬²¢ÇÒÓÒ¼üÃ»ÓĞ°´ÏÂ£¬
+		//buttonæ²¡æœ‰è¢«å³é”®æŒ‰ä¸‹ï¼Œå¹¶ä¸”å³é”®æ²¡æœ‰æŒ‰ä¸‹ï¼Œ
 	if (gtk_button_get_relief(GTK_BUTTON(button_array[pos_data->x_pos][pos_data->y_pos])) != GTK_RELIEF_NONE
 			&& !is_press_right[pos_data->x_pos][pos_data->y_pos])
 	{
-		//µãµ½À×µÄÇé¿ö
+		//ç‚¹åˆ°é›·çš„æƒ…å†µ
 		if (game_area[pos_data->x_pos][pos_data->y_pos] == MINE)
 		{
 			gtk_button_set_label(GTK_BUTTON(button_array[pos_data->x_pos][pos_data->y_pos]), "X");
-			g_source_remove(time_id);//Óöµ½À×£¬¶¨Ê±Æ÷ÔİÍ£
-			open_all_button();//±¬Õ¨´ò¿ªÈ«²¿button
+			g_source_remove(time_id);//é‡åˆ°é›·ï¼Œå®šæ—¶å™¨æš‚åœ
+			open_all_button();//çˆ†ç‚¸æ‰“å¼€å…¨éƒ¨button
 			quit_dialog("Beng.....");
 		}
 		else
 		{
 			gtk_button_set_relief(GTK_BUTTON(button_array[pos_data->x_pos][pos_data->y_pos]), GTK_RELIEF_NONE);
-			//Ã»ÓĞÀ×£¬Ö»ÊÇÊı×Ö£¬¾ÍÏÔÊ¾Êı×Ö
+			//æ²¡æœ‰é›·ï¼Œåªæ˜¯æ•°å­—ï¼Œå°±æ˜¾ç¤ºæ•°å­—
 			if (game_area[pos_data->x_pos][pos_data->y_pos] != 0)
 			{
 				sprintf(label, "%d", game_area[pos_data->x_pos][pos_data->y_pos]);
@@ -457,65 +452,65 @@ void left_press_button(GtkWidget *widget, button_pos *pos_data)
 			}
 			else
 			{
-				//Ã»ÓĞÊı×ÖÒ²Ã»ÓĞÀ×£¬¾ÍÏÔÊ¾¿Õ,²¢Í¬Ê±Õ¹¿ªÏàÁ¬µÄ¿Õ°×ÇøÓò
+				//æ²¡æœ‰æ•°å­—ä¹Ÿæ²¡æœ‰é›·ï¼Œå°±æ˜¾ç¤ºç©º,å¹¶åŒæ—¶å±•å¼€ç›¸è¿çš„ç©ºç™½åŒºåŸŸ
 				gtk_button_set_label((GTK_BUTTON(button_array[pos_data->x_pos][pos_data->y_pos])), "");
 				spread_zero_zone(pos_data->x_pos, pos_data->y_pos);
-				//ÏÔÊ¾¿Õ°×±ßÔµÊı×Ö
+				//æ˜¾ç¤ºç©ºç™½è¾¹ç¼˜æ•°å­—
 				disp_none_border();
 			}
 		}
 	}
 }
 
-//ÕÒµ½À×µÄÊıÄ¿ÏÔÊ¾
+//æ‰¾åˆ°é›·çš„æ•°ç›®æ˜¾ç¤º
 void disp_find_mine(gint mine_num)
 {
 	sprintf(find_str, "%d", mine_num);
 	gtk_label_set_label(GTK_LABEL(label_find_num), find_str);
 }
 
-//ÓÒ¼ü´¦Àí
+//å³é”®å¤„ç†
 void right_press_button(GtkWidget *widget, button_pos *pos_data)
 {
-	//buttonÃ»ÓĞ±»×ó¼ü°´ÏÂ£¬²¢ÇÒÃ»°´ÏÂÓÒ¼ü
+	//buttonæ²¡æœ‰è¢«å·¦é”®æŒ‰ä¸‹ï¼Œå¹¶ä¸”æ²¡æŒ‰ä¸‹å³é”®
 	if (gtk_button_get_relief(GTK_BUTTON(button_array[pos_data->x_pos][pos_data->y_pos])) != GTK_RELIEF_NONE
 			&& !is_press_right[pos_data->x_pos][pos_data->y_pos])
 	{
 		gtk_button_set_label(GTK_BUTTON(button_array[pos_data->x_pos][pos_data->y_pos]), "F");
-		if (game_area[pos_data->x_pos][pos_data->y_pos] == MINE)//Ã¿ÕÒµ½Ò»¸öÀ×±ê¼Ç¾Í¼Ó1
+		if (game_area[pos_data->x_pos][pos_data->y_pos] == MINE)//æ¯æ‰¾åˆ°ä¸€ä¸ªé›·æ ‡è®°å°±åŠ 1
 		{
 			real_find_mine++;
-			if (real_find_mine == mine_num)//È«²¿ÕÒµ½ºóµ¯³ö´°¿ÚÌáÊ¾
+			if (real_find_mine == mine_num)//å…¨éƒ¨æ‰¾åˆ°åå¼¹å‡ºçª—å£æç¤º
 			{
 				quit_dialog("You Win!");
 			}
 		}
-		disp_find_mine(++mine_find);//±ê¼Çºó£¬½«ÕÒµ½À×µÄÊıÄ¿¼Ó1
+		disp_find_mine(++mine_find);//æ ‡è®°åï¼Œå°†æ‰¾åˆ°é›·çš„æ•°ç›®åŠ 1
 
-		is_press_right[pos_data->x_pos][pos_data->y_pos] = TRUE;//±êÊ¾´Ëbutton±»°´ÏÂ
+		is_press_right[pos_data->x_pos][pos_data->y_pos] = TRUE;//æ ‡ç¤ºæ­¤buttonè¢«æŒ‰ä¸‹
 	}
-	else if(is_press_right[pos_data->x_pos][pos_data->y_pos])//button±»ÓÒ¼ü°´ÏÂ£¬ÔÙ°´ÓÒ¼ü»á»Ö¸´
+	else if(is_press_right[pos_data->x_pos][pos_data->y_pos])//buttonè¢«å³é”®æŒ‰ä¸‹ï¼Œå†æŒ‰å³é”®ä¼šæ¢å¤
 	{
 		gtk_button_set_label(GTK_BUTTON(button_array[pos_data->x_pos][pos_data->y_pos]), "");
-		disp_find_mine(--mine_find);//È¡Ïû±ê¼ÇºóÕÒµ½À×µÄÊıÄ¿¼õ1
-		if (game_area[pos_data->x_pos][pos_data->y_pos] == MINE)//È¡Ïû±ê¼Ç¶ÔÓ¦µÄ¼õ1
+		disp_find_mine(--mine_find);//å–æ¶ˆæ ‡è®°åæ‰¾åˆ°é›·çš„æ•°ç›®å‡1
+		if (game_area[pos_data->x_pos][pos_data->y_pos] == MINE)//å–æ¶ˆæ ‡è®°å¯¹åº”çš„å‡1
 		{
 			real_find_mine--;
 		}
-		is_press_right[pos_data->x_pos][pos_data->y_pos] = FALSE;//»Ö¸´ºó±êÊ¾Î´±»ÓÒ¼ü°´ÏÂ
+		is_press_right[pos_data->x_pos][pos_data->y_pos] = FALSE;//æ¢å¤åæ ‡ç¤ºæœªè¢«å³é”®æŒ‰ä¸‹
 	}
 }
 
-//button°´ÏÂÊÂ¼ş´¦Àí
+//buttonæŒ‰ä¸‹äº‹ä»¶å¤„ç†
 void click_button(GtkWidget *widget, GdkEventButton *event, gpointer pos)
 {
 	if (event->type == GDK_BUTTON_PRESS)
 	{
-		if (event->button == 1)//×ó¼üÊÂ¼ş
+		if (event->button == 1)//å·¦é”®äº‹ä»¶
 		{
 			left_press_button(widget, (button_pos *)pos);
 		}
-		if (event->button == 3)//ÓÒ¼üÊÂ¼ş
+		if (event->button == 3)//å³é”®äº‹ä»¶
 		{
 			right_press_button(widget, (button_pos *)pos);
 		}
@@ -527,16 +522,16 @@ void click_button(GtkWidget *widget, GdkEventButton *event, gpointer pos)
 		/*quit_dialog("double clicked");*/
 	}
 }
-//°²ÅÅ½çÃæ
+//å®‰æ’ç•Œé¢
 GtkWidget *create_table(gint row, gint col)
 {
 	GtkWidget *table = NULL;
 	
-	//²»¼Óstatic£¬´Ëº¯ÊıÔËĞĞÍê±Ï£¬½çÃæ³öÏÖ£¬µ«ÊÇ¶ÔÓ¦µÄÎ»ÖÃĞÅÏ¢È«²¿´Ó¶ÑÕ»ÖĞÏûÊ§£¬»á³öÏÖ´«Öµ´íÎó
+	//ä¸åŠ staticï¼Œæ­¤å‡½æ•°è¿è¡Œå®Œæ¯•ï¼Œç•Œé¢å‡ºç°ï¼Œä½†æ˜¯å¯¹åº”çš„ä½ç½®ä¿¡æ¯å…¨éƒ¨ä»å †æ ˆä¸­æ¶ˆå¤±ï¼Œä¼šå‡ºç°ä¼ å€¼é”™è¯¯
 
 
 	table = gtk_table_new(row, col, TRUE);
-	//²¼ÖÃbutton
+	//å¸ƒç½®button
 	for (gint i = 0; i < row; i++)
 	{
 		for (gint j = 0; j < col; j++)
@@ -553,7 +548,7 @@ GtkWidget *create_table(gint row, gint col)
 	return table;
 }
 
-//ÏÔÊ¾Ö÷´°Ìå
+//æ˜¾ç¤ºä¸»çª—ä½“
 GtkWidget *new_window(gchar *title, gint width, gint height)
 {
 	GtkWidget *window = NULL;
@@ -564,7 +559,7 @@ GtkWidget *new_window(gchar *title, gint width, gint height)
 	
 	return window;
 }
-//ÓÎÏ·´°ÌåÉÏµÄlabelĞÅÏ¢
+//æ¸¸æˆçª—ä½“ä¸Šçš„labelä¿¡æ¯
 GtkWidget *label_panel_info(gint num)
 {
 	GtkWidget *label_info = NULL;
@@ -576,7 +571,7 @@ GtkWidget *label_panel_info(gint num)
 	return label_info;
 }
 
-//ÏÔÊ¾Ê±¼ä
+//æ˜¾ç¤ºæ—¶é—´
 gboolean disp_time(gpointer data)
 {
 	gchar time_str[5] = "\0";
@@ -592,17 +587,17 @@ int main(int argc, char *argv[])
 	GtkWidget *window = NULL;
 	GtkWidget *button = NULL;
 
-	init_game_info();//³õÊ¼»¯ĞÅÏ¢
+	init_game_info();//åˆå§‹åŒ–ä¿¡æ¯
 	gtk_init(&argc, &argv);
 	
-	//´°Ìå²¼ÖÃ
+	//çª—ä½“å¸ƒç½®
 	window = new_window("SweepMine", button_row_num * WID, button_col_num * HEI + 5);
-	//¼ÓÒ»¸ö¿ò¼Ü£¬ÓÃÓÚÁé»î°Ú·ÅÆäËû¹¹¼ş	
+	//åŠ ä¸€ä¸ªæ¡†æ¶ï¼Œç”¨äºçµæ´»æ‘†æ”¾å…¶ä»–æ„ä»¶	
 	frame = gtk_fixed_new();
 	gtk_container_add(GTK_CONTAINER(window), frame);
 	
 	
-	//ÓÃtable¹æ·¶buttonÎ»ÖÃ
+	//ç”¨tableè§„èŒƒbuttonä½ç½®
 	GtkWidget *table = create_table(button_row_num, button_col_num);
 
 	gtk_fixed_put(GTK_FIXED(frame), table, 0, 35);
@@ -612,10 +607,10 @@ int main(int argc, char *argv[])
 	g_signal_connect(G_OBJECT(button), "clicked", G_CALLBACK(reset_interface), NULL);
 	gtk_fixed_put(GTK_FIXED(frame), button, 230, 6);
 
-	//À×µÄ×ÜÊı
+	//é›·çš„æ€»æ•°
 	gtk_fixed_put(GTK_FIXED(frame), label_panel_info(mine_num), 370, 8);
 
-	//ÏÔÊ¾±ê¼ÇµÄÀ×
+	//æ˜¾ç¤ºæ ‡è®°çš„é›·
 	label_find_num = label_panel_info(mine_find);
 	gtk_fixed_put(GTK_FIXED(frame), label_find_num, 20, 8);
 

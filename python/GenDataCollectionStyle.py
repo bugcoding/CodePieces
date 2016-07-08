@@ -6,6 +6,10 @@ import sys
 import re
 from workflow import Workflow, ICON_WEB, web
 
+#
+#  切分固定分隔符的序列的 workflow 如 1，2，3，4切分为[1,2,3,4]类似如此
+#
+
 class GenInitDefine(object):
     # 源字符串
     __src_str = ""

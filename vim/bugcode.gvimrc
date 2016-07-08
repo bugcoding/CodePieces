@@ -31,7 +31,6 @@ silent execute '!' . cmd . ' ' . opt . arg1 . ' ' . arg2 . ' > ' . arg3 . eq
 endfunction
 
 
-
 " OmniCppComplete
 "----------------------OmniCppComplete_BEGIN_----------------------------------
 let OmniCpp_ShowAccess = 1
@@ -76,7 +75,6 @@ nmap <silent> <F8> :WMToggle<cr>
 let g:AutoOpenWinManager = 0
 
 "-------------winmanager 设置 _END_------------------------------------
-
 
 
 "tags相关设置
@@ -227,10 +225,9 @@ colorscheme	desertEx
 
 "不同系统下的字体选择
 if has('win32')
-""set guifont=Meslo\ LG\ S\ for\ Powerline:h11:cANSI
-set guifont=Menlo\ for\ Powerline:h11:cANSI
+    set guifont=Menlo\ for\ Powerline:h11:cANSI
 elseif has('unix')
-let &guifont="Monospace 10"
+    let &guifont="Monospace 10"
 endif
 
 "关闭兼容模式
@@ -363,11 +360,11 @@ set formatoptions=tcqro
 :inoremap ' ''<ESC>i
 
 function! ClosePair(char)
-if getline('.')[col('.') - 1] == a:char
-  return "\<Right>"
-else
-  return a:char
-endif
+    if getline('.')[col('.') - 1] == a:char
+        return "\<Right>"
+    else
+        return a:char
+    endif
 endf
 
 "<F4>添加作者信息
@@ -427,20 +424,6 @@ command! -nargs=0 CountWords         :%s/\i\+/&/gn|noh
 set laststatus=2
 "底栏时间
 "set statusline+=[%{strftime(\"%m-%d\ %H:%M:%S\")}]
-
-"设置状态栏根据不同状态显示不同颜色
-"function!! InsertStatuslineColor(mode)
-"    if a:mode == 'i'
-"        hi statusline guibg=Yellow
-"    elseif a:mode == 'r'
-"        hi statusline guibg=Green
-"    else
-"        hi statusline guibg=Blue
-"    endif
-"endfunction
-"au InsertEnter * call InsertStatuslineColor(v:insertmode)
-"au InsertLeave * hi statusline guibg=#187dfb guifg=#333333
-"hi statusline guibg=yellow
 
 "状态栏颜色
 "hi statusline gui=bold,inverse guifg=#4b4f41 guibg=#4bca48
@@ -623,13 +606,6 @@ map <S-r> :call RunSameFile() <CR><ESC>
 
 
 "--------------------编译文件_END_---------------------------------------
-
-
-"--------------------quickfix窗口相关_BEGIN_------------------------------------
-
-"--------------------quickfix窗口相关_END_--------------------------------------
-
-
 
 "-------------------Powerline_BEGIN_-----------------------------
 

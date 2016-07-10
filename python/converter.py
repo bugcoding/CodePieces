@@ -2,7 +2,7 @@
 '''
 #=============================================================================
 #     FileName: Convert.py
-#         Desc: 
+#         Desc: 小工具，用TexturePacker命令行将本目录下所有集合的图片打包
 #       Author: bugcode
 #        Email:
 #     HomePage: 

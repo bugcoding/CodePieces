@@ -2,6 +2,8 @@ import sys
 import os
 import getopt
 
+# 统计目录代码行数
+
 class CountFileLines(object):
     __code_lines = 0
     __code_dirs = ''

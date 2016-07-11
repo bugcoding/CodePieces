@@ -1,9 +1,9 @@
 /*=============================================================================
 #     FileName: sweep_mine.c
-#         Desc: smiple sweep game
+#         Desc: smiple sweep game by gtk
 #       Author: zx
 #        Email: bugcoding@hotmail.com
-#     HomePage: bugcode.net
+#     HomePage: http://bugcode.net
 #      Version: 0.0.1
 #   LastChange: 2013-01-01 11:47:05
 =============================================================================*/

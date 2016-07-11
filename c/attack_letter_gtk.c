@@ -1,3 +1,13 @@
+/*=============================================================================
+#     FileName: attack_letter_gtk.c
+#         Desc: attack letter game by gtk
+#       Author: zx
+#        Email: bugcoding@hotmail.com
+#     HomePage: http://bugcode.net
+#      Version: 0.0.1
+#   LastChange: 2014-01-21 11:03:05
+=============================================================================*/
+
 #include<gtk/gtk.h>
 #include <stdlib.h>
 #include <string.h>

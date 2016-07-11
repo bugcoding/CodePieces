@@ -1,9 +1,9 @@
 /*=============================================================================
-#     FileName: getDirectory.c
+#     FileName: count_srcfile_lines.c
 #         Desc:
 #       Author: zx
-#        Email: zx_start@163.com
-#     HomePage:
+#        Email: bugcoding@hotmail.com
+#     HomePage: http://bugcode.net
 #      Version: 0.0.1
 #   LastChange: 2014-03-03 12:30:39
 #=============================================================================*/

@@ -2,8 +2,6 @@
 #include <vector>
 #include <iostream>
 
-
-//first tranform string, according to utf8 endcoding split string and put this in vector
 std::vector<std::string>  transformUtf8(const std::string &str)
 {
     int len = str.length();

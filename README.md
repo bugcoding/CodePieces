@@ -2,7 +2,7 @@
 codeplay
 ===========
 
-some personal code, c/c++, python, vimconfig, Alfred workflows etc...
+some personal code, c/c++, python, vim config, Alfred workflows etc...
 
 ### c/c++
 
@@ -10,11 +10,11 @@ some personal code, c/c++, python, vimconfig, Alfred workflows etc...
 
 ### python
 
-- some useful tool for myself
+- some useful tool for myself.
 
 ### vim
 
-- vim editor config file and some useful function.
+- vim config file backup.
 - costmize vim color scheme.
 
 ### cocos2dx
@@ -25,16 +25,16 @@ some personal code, c/c++, python, vimconfig, Alfred workflows etc...
 
 - **snake**
 
-  snake game for testing cocos2dx 3.0
+  snake game for testing cocos2dx 3.0.
 
 - **2048**
 
-  2048 game implementation by cocos2dx 3.x
+  2048 game implementation by cocos2dx 3.x.
 
 - **wind bird**
 
-  like flappy bird, do not need to touch screen by finger, use mouth to blow to phone mic
+  like flappy bird, do not need to touch screen by finger, use mouth to blow to phone mic.
 
 ### workflows
 
-- some Alfred workflows made by myself
+- some Alfred workflows made by myself.

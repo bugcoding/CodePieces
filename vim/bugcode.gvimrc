@@ -2,32 +2,32 @@ set nocompatible
 source $VIMRUNTIME/vimrc_example.vim
 
 if has("win32")
-    source $VIMRUNTIME/mswin.vim
+	source $VIMRUNTIME/mswin.vim
 endif
 
 set diffexpr=MyDiff()
 function! MyDiff()
-let opt = '-a --binary '
-if &diffopt =~ 'icase' | let opt = opt . '-i ' | endif
-if &diffopt =~ 'iwhite' | let opt = opt . '-b ' | endif
-let arg1 = v:fname_in
-if arg1 =~ ' ' | let arg1 = '"' . arg1 . '"' | endif
-let arg2 = v:fname_new
-if arg2 =~ ' ' | let arg2 = '"' . arg2 . '"' | endif
-let arg3 = v:fname_out
-if arg3 =~ ' ' | let arg3 = '"' . arg3 . '"' | endif
-let eq = ''
-if $VIMRUNTIME =~ ' '
-if &sh =~ '\<cmd'
-  let cmd = '""' . $VIMRUNTIME . '\diff"'
-  let eq = '"'
-else
-  let cmd = substitute($VIMRUNTIME, ' ', '" ', '') . '\diff"'
-endif
-else
-let cmd = $VIMRUNTIME . '\diff'
-endif
-silent execute '!' . cmd . ' ' . opt . arg1 . ' ' . arg2 . ' > ' . arg3 . eq
+	let opt = '-a --binary '
+	if &diffopt =~ 'icase' | let opt = opt . '-i ' | endif
+	if &diffopt =~ 'iwhite' | let opt = opt . '-b ' | endif
+	let arg1 = v:fname_in
+	if arg1 =~ ' ' | let arg1 = '"' . arg1 . '"' | endif
+	let arg2 = v:fname_new
+	if arg2 =~ ' ' | let arg2 = '"' . arg2 . '"' | endif
+	let arg3 = v:fname_out
+	if arg3 =~ ' ' | let arg3 = '"' . arg3 . '"' | endif
+	let eq = ''
+	if $VIMRUNTIME =~ ' '
+		if &sh =~ '\<cmd'
+			let cmd = '""' . $VIMRUNTIME . '\diff"'
+			let eq = '"'
+		else
+			let cmd = substitute($VIMRUNTIME, ' ', '" ', '') . '\diff"'
+		endif
+	else
+		let cmd = $VIMRUNTIME . '\diff'
+	endif
+	silent execute '!' . cmd . ' ' . opt . arg1 . ' ' . arg2 . ' > ' . arg3 . eq
 endfunction
 
 
@@ -151,10 +151,10 @@ set shiftwidth=4
 set guioptions-=m
 set guioptions-=T
 map <silent> <F2> :if &guioptions =~# 'm' <Bar>
-    \set guioptions-=m <bar>
-\else <Bar>
-    \set guioptions+=m <Bar>
-\endif<CR>
+			\set guioptions-=m <bar>
+			\else <Bar>
+			\set guioptions+=m <Bar>
+			\endif<CR>
 
 "隐藏底部滚动条
 set guioptions-=b
@@ -211,13 +211,13 @@ filetype on
 
 "vim主题, 根据不同的文件使用不同的主题
 function g:SetColorscheme()
-if &filetype == "python"
-    colorscheme	gummybears
-else
-    colorscheme	desertEx
-    set cursorline
-        hi cursorline guibg=#333333
-endif
+	if &filetype == "python"
+		colorscheme	gummybears
+	else
+		colorscheme	desertEx
+		set cursorline
+		hi cursorline guibg=#333333
+	endif
 endfunc
 ""autocmd FileType * call g:SetColorscheme()
 colorscheme	desertEx
@@ -225,9 +225,9 @@ colorscheme	desertEx
 
 "不同系统下的字体选择
 if has('win32')
-    set guifont=Menlo\ for\ Powerline:h11:cANSI
+	set guifont=Menlo\ for\ Powerline:h11:cANSI
 elseif has('unix')
-    let &guifont="Monospace 10"
+	let &guifont="Monospace 10"
 endif
 
 "关闭兼容模式
@@ -254,8 +254,8 @@ set vb t_vb=
 set novb
 "去掉按ENTER的提示
 command! -nargs=1 Silent
-\ | execute ':silent !'.
-\ | execute ':redraw!'
+			\ | execute ':silent !'.
+			\ | execute ':redraw!'
 
 "使用统一的dos格式
 set fileformats=
@@ -279,15 +279,15 @@ set selection=inclusive
 
 "十六进制查看
 augroup Binary
-au!
-au BufReadPost *.* if &bin | %!xxd
-au BufReadPost *.* set ft=xxd | endif
+	au!
+	au BufReadPost *.* if &bin | %!xxd
+	au BufReadPost *.* set ft=xxd | endif
 augroup END
 
 "去掉press ENTER 提示
 command! -nargs=1 Silent
-\ | execute ':silent !'.<q-args>
-\ | execute ':redraw!'
+			\ | execute ':silent !'.<q-args>
+			\ | execute ':redraw!'
 
 
 "快速对齐映射
@@ -334,13 +334,6 @@ highlight PmenuSel ctermbg=7 guibg=#a06000 guifg=White
 highlight PmenuSbar ctermbg=7 guibg=Black
 highlight PmenuThumb guibg=Black
 
-"代码行折叠
-"set foldenable " 开始折叠
-"set foldmethod=syntax " 设置语法折叠
-"set foldcolumn=0 " 设置折叠区域的宽度
-"setlocal foldlevel=1 " 设置折叠层数
-"set foldclose=all " 设置为自动关闭折叠
-"nnoremap <space> @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR> " 用空格键来开关折叠
 
 " 多行注释时样子更好看
 let NERDCompactSexyComs=1
@@ -360,11 +353,11 @@ set formatoptions=tcqro
 :inoremap ' ''<ESC>i
 
 function! ClosePair(char)
-    if getline('.')[col('.') - 1] == a:char
-        return "\<Right>"
-    else
-        return a:char
-    endif
+	if getline('.')[col('.') - 1] == a:char
+		return "\<Right>"
+	else
+		return a:char
+	endif
 endf
 
 "<F4>添加作者信息
@@ -376,26 +369,26 @@ nmap <F4> :AuthorInfoDetect<cr>
 
 "调用AStyle程序，代码格式化
 function! CodeFormat()
-      "取得当前光标所在行数
-      let lineNum = line(".")
-      "C代码
-      if &filetype == 'c'
-             "执行调用外部程序的命令
-              exec "%! astyle -A1Lfpjk3NS\<CR>"
-      "H头文件(文件类型识别为cpp)，CPP代码
-      elseif &filetype == 'cpp'
-             "执行调用外部程序命令
-             exec "%! astyle -A1Lfpjk3NS\<CR>"
-      "JAVA代码
-      elseif &filetype == 'java'
-             "执行调用外部程序命令
-             exec "%! astyle -A1Lfpjk3NS\<CR>"
-      else
-             "提示信息
-             echo "不支持".&filetype."文件类型!"
-      endif
-      "返回先前光标所在行
-      exec lineNum
+	"取得当前光标所在行数
+	let lineNum = line(".")
+	"C代码
+	if &filetype == 'c'
+		"执行调用外部程序的命令
+		exec "%! astyle -A1Lfpjk3NS\<CR>"
+		"H头文件(文件类型识别为cpp)，CPP代码
+	elseif &filetype == 'cpp'
+		"执行调用外部程序命令
+		exec "%! astyle -A1Lfpjk3NS\<CR>"
+		"JAVA代码
+	elseif &filetype == 'java'
+		"执行调用外部程序命令
+		exec "%! astyle -A1Lfpjk3NS\<CR>"
+	else
+		"提示信息
+		echo "不支持".&filetype."文件类型!"
+	endif
+	"返回先前光标所在行
+	exec lineNum
 endfunc
 
 "映射代码美化函数到Shift+f
@@ -415,10 +408,6 @@ command! -nargs=0 CountWords         :%s/\i\+/&/gn|noh
 
 "状态栏相关
 "-----------------状态栏相关_BEGIN_------------------------------------------
-
-
-"状态条显示
-"set statusline=%F%m%r%w\ [FORMAT=%{&ff}]\[TYPE=%Y]\[POS=%l,%v]\[ASC=%b]\[HEX=0X%B]\
 
 "显示状态栏
 set laststatus=2
@@ -443,24 +432,22 @@ hi cursorline guibg=#333333
 ""查看某列是否在一列上
 map ,ch :call SetColorColumn()<CR>
 function! SetColorColumn()
-let col_num = virtcol(".")
-let cc_list = split(&cc, ',')
-if count(cc_list, string(col_num)) <= 0
-    execute "set cc+=".col_num
-else
-    execute "set cc-=".col_num
-endif
+	let col_num = virtcol(".")
+	let cc_list = split(&cc, ',')
+	if count(cc_list, string(col_num)) <= 0
+		execute "set cc+=".col_num
+	else
+		execute "set cc-=".col_num
+	endif
 endfunction
 
 "显示缩进线标识
 "map ,in :call EchoIndentLine()<CR>
 function! EchoIndentLine()
-se list
-"se lcs=tab:>-
-set lcs=tab:\|\
-hi SpecialKey guifg=#333333
+	se list
+	set lcs=tab:\|\
+	hi SpecialKey guifg=#333333
 endfunction
-
 
 "-----------------状态栏相关_END_---------------------------------------
 
@@ -526,14 +513,14 @@ endfunction
 "
 ""定义Debug函数，用来调试程序
 func! Debug()
-exec "w"
-if &filetype == 'c'
-    exec "!gcc -g % -o %<.exe"
-    exec "!gdb %<.exe"
-elseif &filetype == 'cpp'
-    exec "!g++ -g % -o %<.exe"
-    exec "!gdb %<.exe"
-endif
+	exec "w"
+	if &filetype == 'c'
+		exec "!gcc -g % -o %<.exe"
+		exec "!gdb %<.exe"
+	elseif &filetype == 'cpp'
+		exec "!g++ -g % -o %<.exe"
+		exec "!gdb %<.exe"
+	endif
 endfunc
 "结束定义Debug
 
@@ -554,52 +541,52 @@ map <S-d> :call Debug()<CR><ESC>
 
 "快速运行php
 function! RunPHP()
-  exec "w"
-  let runcmd="!php -q %"
-  exec runcmd
+	exec "w"
+	let runcmd="!php -q %"
+	exec runcmd
 endfunction
 nmap <M-a> :call RunPHP() <CR><ESC>
 
 ""编译运行python,lua
 function! RunScriptFile()
-exec "w"
-if &filetype == "py"
-    let runcmd="!python %<.py"
-elseif &filetype == "lua"
-    let runcmd="!lua %<.lua"
-endif
-exec runcmd
+	exec "w"
+	if &filetype == "py"
+		let runcmd="!python %<.py"
+	elseif &filetype == "lua"
+		let runcmd="!lua %<.lua"
+	endif
+	exec runcmd
 endfunction
 
 nmap <M-r> :call RunScriptFile() <CR><ESC>
 
 "直接编译本文件并生成目标文件，并马上与libpng静态库链接生成可执行文件
 func! CompilePng()
-exec "w"
-    if &filetype == "c"
-        let linkcmd = "!gcc -Wall % -o %< -lpng -lz"
-    elseif &filetype == "cpp"
-        let linkcmd = "!g++ -Wall % -o %< -lpng -lz"
-        exec linkcmd
-    endif
+	exec "w"
+	if &filetype == "c"
+		let linkcmd = "!gcc -Wall % -o %< -lpng -lz"
+	elseif &filetype == "cpp"
+		let linkcmd = "!g++ -Wall % -o %< -lpng -lz"
+		exec linkcmd
+	endif
 endfunc
 
 map <M-s> :call CompilePng() <CR><ESC>
 
 "运行与当前文件名相同的可执行文件
 func! RunSameFile()
-    let file_name = expand("%:r")
-    if (has("win32"))
-        let exe_file_name = file_name .".exe"
-    else
-        let exe_file_name = file_name
-    endif
-    if filereadable(exe_file_name)
-        let runcmd = "!%<"
-        exec runcmd
-    else
-        echo exe_file_name." not exist!"
-    endif
+	let file_name = expand("%:r")
+	if (has("win32"))
+		let exe_file_name = file_name .".exe"
+	else
+		let exe_file_name = file_name
+	endif
+	if filereadable(exe_file_name)
+		let runcmd = "!%<"
+		exec runcmd
+	else
+		echo exe_file_name." not exist!"
+	endif
 endfunc
 
 map <S-r> :call RunSameFile() <CR><ESC>
@@ -607,22 +594,12 @@ map <S-r> :call RunSameFile() <CR><ESC>
 
 "--------------------编译文件_END_---------------------------------------
 
-"-------------------Powerline_BEGIN_-----------------------------
-
-""let g:Powerline_symbols = 'unicode'
-""call Pl#Theme#ReplaceSegment('scrollpercent', 'charcode')
-""call Pl#Theme#InsertSegment('time', 'after', 'lineinfo')
-"call Pl#Theme#ReplaceSegment('filetype', 'filesize')
-""call Pl#Theme#InsertSegment('currhigroup', 'after', 'filename')
-
-"-------------------Powerline_END_-------------------------------
-
 
 "-------------------PCLint_BEGIN_------------------------------------------------------
 " windows only
 if has('win32')
-    set errorformat=%f(%l):\ %t%*[^0-9]%n:\ %m
-    set makeprg=d:\pclint\LINT-NT.exe\ -u\ d:\PCLint\std.lnt\ d:\PCLint\env-vc6.lnt\ \"%\"
+	set errorformat=%f(%l):\ %t%*[^0-9]%n:\ %m
+	set makeprg=d:\pclint\LINT-NT.exe\ -u\ d:\PCLint\std.lnt\ d:\PCLint\env-vc6.lnt\ \"%\"
 endif
 
 "-------------------PCLint_END_--------------------------------------------------------

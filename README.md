@@ -14,14 +14,14 @@ some personal code, c/c++, python, vimconfig, Alfred workflows etc...
 
 ### vim
 
-- vim editor config file and some useful function
-- costmize vim color scheme
+- vim editor config file and some useful function.
+- costmize vim color scheme.
 
 ### cocos2dx
 
 - **airplane**
 
-  plane game in cocos2dx, similar to 1942 in family computer
+  plane game in cocos2dx, similar to 1942 in family computer.
 
 - **snake**
 

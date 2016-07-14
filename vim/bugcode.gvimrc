@@ -53,7 +53,7 @@ au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
 set completeopt=menuone,menu,longest
 "----------------------OmniCppComplete_END_------------------------------------
 
-"设置tab键默认补???
+"设置tab键默认补全
 "----------------------SuperTab_BEGIN_-----------------------------------------
 ""let g:SuperTabDefaultCompletionType = "<C-x><C-p>"
 "----------------------SuperTab_END_-------------------------------------------
@@ -66,7 +66,7 @@ set completeopt=menuone,menu,longest
 ""let g:winManagerWindowLayout = "BufExplorer,FileExplorer|TagList"
 let g:winManagerWindowLayout="NERDTree|TagList,BufExplorer"
 
-"设置winmanager的宽度，默认???25
+"设置winmanager的宽度，默认25
 let g:winManagerWidth = 26
 
 "定义打开关闭winmanager按键
@@ -115,7 +115,7 @@ set lines=35 columns=110
 "底部滚动条
 set guioptions+=b
 
-"多标???
+"多标签
 ":tabedit
 
 "多标签快捷键操作
@@ -128,7 +128,7 @@ set guioptions+=b
 :imap  <F5> <ESC>:tabnew<CR>i
 :imap  <F4> <ESC>:tabc<CR>i
 
-"设定光标离窗口上下边??? 7 行时窗口自动滚动
+"设定光标离窗口上下边距离7行时窗口自动滚动
 set scrolloff=7
 
 "命令行高度
@@ -161,7 +161,7 @@ map <silent> <F2> :if &guioptions =~# 'm' <Bar>
 "隐藏底部滚动条
 set guioptions-=b
 
-"设置按BackSpace的时候可以一次删除掉4个空???
+"设置按BackSpace的时候可以一次删除掉4个空格
 set softtabstop=4
 
 set expandtab
@@ -204,14 +204,14 @@ set nobackup
 set noswapfile
 set nowritebackup
 
-"插件自动检???
+"插件自动检测
 filetype plugin on
 filetype plugin indent on
 
 "文件类型自动检测
 filetype on
 
-"vim主题, 根据不同的文件使用不同的主题??? python的主题更好看一???
+"vim主题, 根据不同的文件使用不同的主题
 function g:SetColorscheme()
 if &filetype == "python"
     colorscheme	gummybears
@@ -293,7 +293,7 @@ command! -nargs=1 Silent
 \ | execute ':redraw!'
 
 
-"快速对齐映???
+"快速对齐映射
 vnoremap <silent> <Enter> :EasyAlign<cr>
 
 "-------------------其他_END_-----------------------
@@ -331,13 +331,13 @@ set nuw=1
 
 "代码提示辅助相关
 "-----------------代码辅助提示_BEGIN_---------------------
-" 设置代码提示窗口的颜色（默认为粉红色???
+" 设置代码提示窗口的颜色（默认为粉红色）
 highlight Pmenu ctermbg=13 guibg=#80c040 guifg=Black
 highlight PmenuSel ctermbg=7 guibg=#a06000 guifg=White
 highlight PmenuSbar ctermbg=7 guibg=Black
 highlight PmenuThumb guibg=Black
 
-"代码行折???
+"代码行折叠
 "set foldenable " 开始折叠
 "set foldmethod=syntax " 设置语法折叠
 "set foldcolumn=0 " 设置折叠区域的宽度
@@ -370,7 +370,7 @@ else
 endif
 endf
 
-"<F4>添加作者信???
+"<F4>添加作者信息
 let g:vimrc_author='bugcode'
 let g:vimrc_email='bugcoding@gmail.com'
 let g:vimrc_homepage='http://bugcode.net'
@@ -500,13 +500,13 @@ endfunction
 "    exec compilecmd." % ".compileflag
 "endfunc
 "
-"" 编译Java源文???
+"" 编译Java源文件
 "func! CompileJava()
 "    exec "w"
 "    exec "!javac %"
 "endfunc
 "
-"" 根据文件类型自动选择相应的编译函???
+"" 根据文件类型自动选择相应的编译函数
 "func! CompileCode()
 "        exec "w"
 "     if &filetype == "c"
